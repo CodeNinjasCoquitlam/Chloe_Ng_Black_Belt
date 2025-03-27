@@ -68,11 +68,11 @@ public class Interact : MonoBehaviour
                 if (heldItemName == "Toast")
                 {
                     PlaceHeldItem();
-                    GameObject.Find("Receivers/French Toast/toastSlice").SetActive(true);
+                    GameObject.Find("Receivers/Pudu/French Toast/toastSlice").SetActive(true);
                 } else if (heldItemName == "friedEgg")
                 {
                     PlaceHeldItem();
-                    GameObject.Find("Receivers/French Toast/friedEgg").SetActive(true);
+                    GameObject.Find("Receivers/Pudu/French Toast/friedEgg").SetActive(true);
                 }
             }
         }

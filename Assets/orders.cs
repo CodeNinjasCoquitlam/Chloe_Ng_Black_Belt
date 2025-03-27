@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class orders : MonoBehaviour
 {
-    //public string[] = new string[] {"Egg Sandwich", "Milk",};
+    //public string[] = new string[] {"Egg Sandwich", "Milk", "Egg and "};
     public bool order = false;
 
 
@@ -31,6 +31,6 @@ public class orders : MonoBehaviour
 
     void cloning()
     {
-        Instantiate()
+        //Instantiate()
     }
 }
