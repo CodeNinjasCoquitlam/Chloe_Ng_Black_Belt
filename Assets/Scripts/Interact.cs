@@ -8,6 +8,13 @@ public class Interact : MonoBehaviour
 
     public Stove stove;
 
+    public AudioSource stoveSound;
+    public AudioSource pickUp;
+    public AudioSource putDown;
+
+    //public audioSource audiosource;
+
+    public GameObject creamPrefab;
     public GameObject breadPrefab;
     public GameObject eggPrefab;
     public GameObject friedEggPrefab;
@@ -22,23 +29,38 @@ public class Interact : MonoBehaviour
         {
             if (triggerName == "Bread")
             {
+                pickUp.Play();
                 PickUpItem(breadPrefab, "breadSlice");
             }
 
             if(triggerName == "Egg")
             {
+                pickUp.Play();
                 PickUpItem(eggPrefab, "egg");
+            }
+
+            if(triggerName == "Cream") 
+            {
+                pickUp.Play();
+                PickUpItem(creamPrefab, "cream");
+            }
+            if (triggerName == "Cookie") 
+            {
+                pickUp.Play();
+                PickUpItem(creamPrefab, "cream");
             }
 
             if (triggerName == "Stove")
             {
                 if (heldItemName == "breadSlice")
                 {
+                    stoveSound.Play();
                     stove.ToastBread();
                     PlaceHeldItem();
                 } 
                 else if (heldItemName == "egg")
                 {
+                    stoveSound.Play();
                     stove.FryEgg();
                     PlaceHeldItem();
                 }
@@ -48,6 +70,7 @@ public class Interact : MonoBehaviour
                     {
                       if (stove.smokes == "0")
                         {
+                            pickUp.Play();
                             PickUpItem(FrenchToastPrefab, "Toast");
                             stove.CleanStove();
                         }
@@ -56,6 +79,7 @@ public class Interact : MonoBehaviour
                     {
                         if (stove.smokes == "0")
                         {
+                            pickUp.Play();
                             PickUpItem(friedEggPrefab, "friedEgg");
                             stove.CleanStove();
                         }
@@ -67,12 +91,18 @@ public class Interact : MonoBehaviour
             {
                 if (heldItemName == "Toast")
                 {
+                    putDown.Play();
                     PlaceHeldItem();
                     GameObject.Find("Receivers/Pudu/French Toast/toastSlice").SetActive(true);
                 } else if (heldItemName == "friedEgg")
                 {
+                    putDown.Play();
                     PlaceHeldItem();
                     GameObject.Find("Receivers/Pudu/French Toast/friedEgg").SetActive(true);
+                } else if (heldItemName == "cream (1)") {
+                    putDown.Play();
+                    PlaceHeldItem();
+                    GameObject.Find("Receivers/Pudu/French Toast/cream").SetActive(true);
                 }
             }
         }
