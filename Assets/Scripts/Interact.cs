@@ -11,10 +11,12 @@ public class Interact : MonoBehaviour
     public AudioSource stoveSound;
     public AudioSource pickUp;
     public AudioSource putDown;
+    public AudioSource trashAway;
+    public GameObject trashPrefab;
 
-    //public audioSource audiosource;
-
+    public GameObject lemonPrefab;
     public GameObject creamPrefab;
+    public GameObject cookiePrefab;
     public GameObject breadPrefab;
     public GameObject eggPrefab;
     public GameObject friedEggPrefab;
@@ -33,21 +35,34 @@ public class Interact : MonoBehaviour
                 PickUpItem(breadPrefab, "breadSlice");
             }
 
-            if(triggerName == "Egg")
+            if (triggerName == "Egg")
             {
                 pickUp.Play();
                 PickUpItem(eggPrefab, "egg");
             }
 
-            if(triggerName == "Cream") 
+            if (triggerName == "Lemonade")
+            {
+                pickUp.Play();
+                PickUpItem(lemonPrefab, "lemonade");
+            }
+
+            if (triggerName == "Cream")
             {
                 pickUp.Play();
                 PickUpItem(creamPrefab, "cream");
             }
-            if (triggerName == "Cookie") 
+            if (triggerName == "Cookie")
             {
                 pickUp.Play();
-                PickUpItem(creamPrefab, "cream");
+                PickUpItem(cookiePrefab, "cookie");
+            }
+
+            if (triggerName == "Trash")
+            {
+
+                trashAway.Play();
+                PlaceHeldItem();
             }
 
             if (triggerName == "Stove")
@@ -57,7 +72,7 @@ public class Interact : MonoBehaviour
                     stoveSound.Play();
                     stove.ToastBread();
                     PlaceHeldItem();
-                } 
+                }
                 else if (heldItemName == "egg")
                 {
                     stoveSound.Play();
@@ -68,7 +83,7 @@ public class Interact : MonoBehaviour
                 {
                     if (stove.cookedFood == "toast")
                     {
-                      if (stove.smokes == "0")
+                        if (stove.smokes == "0")
                         {
                             pickUp.Play();
                             PickUpItem(FrenchToastPrefab, "Toast");
@@ -94,15 +109,30 @@ public class Interact : MonoBehaviour
                     putDown.Play();
                     PlaceHeldItem();
                     GameObject.Find("Receivers/Pudu/French Toast/toastSlice").SetActive(true);
-                } else if (heldItemName == "friedEgg")
+                }
+                else if (heldItemName == "friedEgg")
                 {
                     putDown.Play();
                     PlaceHeldItem();
                     GameObject.Find("Receivers/Pudu/French Toast/friedEgg").SetActive(true);
-                } else if (heldItemName == "cream (1)") {
+                }
+                else if (heldItemName == "cream")
+                {
                     putDown.Play();
                     PlaceHeldItem();
-                    GameObject.Find("Receivers/Pudu/French Toast/cream").SetActive(true);
+                    GameObject.Find("Receivers/Pudu/French Toast/Cream").SetActive(true);
+                }
+                else if (heldItemName == "lemonade")
+                {
+                    putDown.Play();
+                    PlaceHeldItem();
+                    GameObject.Find("Receivers/Pudu/French Toast/Lemonade").SetActive(true);
+                }
+                else if (heldItemName == "cookie")
+                {
+                    putDown.Play();
+                    PlaceHeldItem();
+                    GameObject.Find("Receivers/Pudu/French Toast/chocoCookie").SetActive(true);
                 }
             }
         }
@@ -112,7 +142,7 @@ public class Interact : MonoBehaviour
     {
         triggerName = other.name;
     }
-    
+
     private void OnTriggerExit(Collider other)
     {
         triggerName = "";
@@ -126,13 +156,14 @@ public class Interact : MonoBehaviour
 
     private void PickUpItem(GameObject itemPrefab, string itemName)
     {
-        
+
         heldItem = Instantiate(itemPrefab, transform, false);
         heldItem.transform.localPosition = new Vector3(0, 0.2f, 0.5f);
         if (heldItem.tag == "Egg")
         {
             heldItem.transform.localScale = new Vector3(0.25f, 0.3f, 0.2f);
-        } else
+        }
+        else
         {
             heldItem.transform.localScale = new Vector3(1, 1, 1);
         }
