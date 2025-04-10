@@ -6,8 +6,12 @@ using UnityEngine.SceneManagement;
 public class Instructions : MonoBehaviour
 {
 
+    public AudioSource clickInstru;
+
+
     public void LoadInstructions()
     {
+        clickInstru.Play();
         SceneManager.LoadScene(2);
     }
 

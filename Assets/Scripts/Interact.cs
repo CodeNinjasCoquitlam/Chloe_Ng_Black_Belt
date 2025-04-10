@@ -14,6 +14,8 @@ public class Interact : MonoBehaviour
     public AudioSource trashAway;
     public GameObject trashPrefab;
 
+    public GameObject Prefab;
+    public GameObject olivePrefab;
     public GameObject lemonPrefab;
     public GameObject creamPrefab;
     public GameObject cookiePrefab;
@@ -56,6 +58,12 @@ public class Interact : MonoBehaviour
             {
                 pickUp.Play();
                 PickUpItem(cookiePrefab, "cookie");
+            }
+
+            if (triggerName == "Olives")
+            {
+                pickUp.Play();
+                PickUpItem(olivePrefab, "olive");
             }
 
             if (triggerName == "Trash")
@@ -133,6 +141,12 @@ public class Interact : MonoBehaviour
                     putDown.Play();
                     PlaceHeldItem();
                     GameObject.Find("Receivers/Pudu/French Toast/chocoCookie").SetActive(true);
+                }
+                else if (heldItemName == "olive")
+                {
+                    putDown.Play();
+                    PlaceHeldItem();
+                    GameObject.Find("Receivers/Pudu/French Toast/olives").SetActive(true);
                 }
             }
         }
