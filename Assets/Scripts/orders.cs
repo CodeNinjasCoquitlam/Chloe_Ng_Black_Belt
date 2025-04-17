@@ -19,10 +19,21 @@ public class orders : MonoBehaviour
     //"Egg and Ham Sandwich with lemonade"
     //"Egg and Olive sandwich"
     //"Egg Olive Sandwich with lemonade"};
-
+    public Vector3 startPos;
+    public GameObject frenchtoast;
+    public bool moving = false;
     public bool ordering = false;
+    public bool cloned = false;
 
     //Making the orders 
+    order COOKIE = new order(false, false, true, false, false, false);
+    order COOKIE_LEMONADE = new order(false, true, true, false, false, false);
+    order BREAD = new order(false, false, false, true, false, false);
+    order BREAD_LEMONADE = new order(false, true, false, true, false, false);
+    order BREAD_AND_HAM = new order(false, false, false, true, true, false);
+    order BREAD_AND_HAM_LEMONADE = new order(false, true, false, true, true, false);
+    order BREAD_AND_HAM_AND_OLIVE = new order(false, false, false, true, true, true);
+    order BREAD_AND_HAM_AND_OLIVE_LEMONADE = new order(false, true, false, true, true, true);
     order EGG = new order(true, false, false, false, false, false);
     order EGG_LEMONADE = new order(true, true, false, false, false, false);
     order EGG_AND_OLIVE = new order(true, false, false, false, false, true);
@@ -67,6 +78,11 @@ public class orders : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        startPos = transform.position;
+        frenchtoast = GameObject.Find("Receivers/Pudu/French Toast");
+    }
     
 
     void Update()
@@ -75,18 +91,45 @@ public class orders : MonoBehaviour
         {
             transform.Rotate(Vector3.up * 60 * Time.deltaTime);
         }
+        if(moving == true)
+        {
+            
+            if(transform.position.z <= startPos.z)
+                {
+                    transform.position += new Vector3(0, 0, 1);
+                }
+        }
+        
         
         if (transform.rotation.eulerAngles.y >= 90)
         {
             ordering = false;
             transform.position += new Vector3(0.5f, 0, 0);
-            Invoke("cloning", 1.0f);
+            if (cloned == false)
+            {
+                
+                Invoke("cloning", 2f);
+                cloned = true;
+            }
+        }
+        if (Input.GetKeyDown("v"))
+        {
+            ordering = true;
         }
 
     }
 
     void cloning()
     {
-        //Instantiate()
+        //transform.rotation = new Vector3(0, 0, 0);
+        foreach (Transform child in frenchtoast.transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+        gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+        transform.position = startPos - new Vector3(0, 0, 0.5f);
+        moving = true;
+        
+        
     }
 }
