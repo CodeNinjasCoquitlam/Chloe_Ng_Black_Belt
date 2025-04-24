@@ -24,11 +24,15 @@ public class orders : MonoBehaviour
     public bool moving = false;
     public bool ordering = false;
     public bool cloned = false;
+    public int randomNum;
+
+
 
     //Making the orders 
     order COOKIE = new order(false, false, true, false, false, false);
     order COOKIE_LEMONADE = new order(false, true, true, false, false, false);
     order BREAD = new order(false, false, false, true, false, false);
+    order BREAD_OLIVE = new order(false, false, false, true, false, true);
     order BREAD_LEMONADE = new order(false, true, false, true, false, false);
     order BREAD_AND_HAM = new order(false, false, false, true, true, false);
     order BREAD_AND_HAM_LEMONADE = new order(false, true, false, true, true, false);
@@ -89,31 +93,122 @@ public class orders : MonoBehaviour
     {
         if(ordering == true)
         {
+            //turns it right
             transform.Rotate(Vector3.up * 60 * Time.deltaTime);
         }
         if(moving == true)
         {
             
             if(transform.position.z <= startPos.z)
+            {
+                //makes it move forward to the table    
+                transform.position += new Vector3(0, 0, 1);
+            } else
+            {
+                
+                moving = false;
+                randomNum = Random.Range(1, 20);
+                if (randomNum == 1)
                 {
-                    transform.position += new Vector3(0, 0, 1);
+                    order COOKIE;
+
                 }
-        }
+                if (randomNum == 2)
+                {
+                    
+                }
+                if (randomNum == 3)
+                {
+                    
+                }
+                if (randomNum == 4)
+                {
+
+                }
+                if (randomNum == 5)
+                {
+
+                }
+                if (randomNum == 6)
+                {
+
+                }
+                if (randomNum == 7)
+                {
+
+                }
+                if (randomNum == 8)
+                {
+
+                }
+                if (randomNum == 9)
+                {
+
+                }
+                if (randomNum == 10)
+                {
+
+                }
+                if (randomNum == 11)
+                {
+
+                }
+                if (randomNum == 12)
+                {
+
+                }
+                if (randomNum == 13)
+                {
+
+                }
+                if (randomNum == 14)
+                {
+
+                }
+                if (randomNum == 15)
+                {
+
+                }
+                if (randomNum == 16)
+                {
+
+                }
+                if (randomNum == 17)
+                {
+
+                }
+                if (randomNum == 18)
+                {
+
+                }
+                if (randomNum == 19)
+                {
+
+                }
+                if (randomNum == 20)
+                {
+
+                }
+                //gameObject.FindChildByName("chocoCookie").setActive;
+            }
+        } 
         
         
         if (transform.rotation.eulerAngles.y >= 90)
         {
+            //if it stopped turning right
             ordering = false;
             transform.position += new Vector3(0.5f, 0, 0);
             if (cloned == false)
             {
-                
+                //justs teleports it back
                 Invoke("cloning", 2f);
                 cloned = true;
             }
         }
         if (Input.GetKeyDown("v"))
         {
+            //starts everything
             ordering = true;
         }
 
