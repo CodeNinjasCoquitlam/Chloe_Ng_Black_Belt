@@ -29,27 +29,29 @@ public class orders : MonoBehaviour
 
 
     //Making the orders 
-    order COOKIE = new order(false, false, true, false, false, false);
-    order COOKIE_LEMONADE = new order(false, true, true, false, false, false);
-    order BREAD = new order(false, false, false, true, false, false);
-    order BREAD_OLIVE = new order(false, false, false, true, false, true);
-    order BREAD_LEMONADE = new order(false, true, false, true, false, false);
-    order BREAD_AND_HAM = new order(false, false, false, true, true, false);
-    order BREAD_AND_HAM_LEMONADE = new order(false, true, false, true, true, false);
-    order BREAD_AND_HAM_AND_OLIVE = new order(false, false, false, true, true, true);
-    order BREAD_AND_HAM_AND_OLIVE_LEMONADE = new order(false, true, false, true, true, true);
-    order EGG = new order(true, false, false, false, false, false);
-    order EGG_LEMONADE = new order(true, true, false, false, false, false);
-    order EGG_AND_OLIVE = new order(true, false, false, false, false, true);
-    order EGG_AND_OLIVE_LEMONADE = new order(true, true, false, false, false, true);
-    order EGG_SANDWICH = new order(true, false, false, true, false, false);
-    order EGG_SANDWICH_LEMONADE = new order(true, true, false, true, false, false);
-    order EGG_AND_HAM_SANDWICH = new order(true, false, false, true, true, false);
-    order EGG_AND_HAM_SANDWICH_LEMONADE = new order(true, true, false, true, true, false);
-    order EGG_AND_OLIVE_SANDWICH = new order(true, false, false, true, false, true);
-    order EGG_AND_OLIVE_SANDWICH_LEMONADE = new order(true, true, false, true, false, true);
-    order EGG_AND_HAM_AND_OLIVE_SANDWICH = new order(true, false, false, true, true, true);
-    order EGG_AND_HAM_AND_OLIVE_SANDWICH_LEMONADE = new order(true, true, false, true, true, true);
+
+    // CHANGED BY SENSEI RYAN (WORKS)
+    public List<string> orderssss = new List<string> {
+      "COOKIE",
+      "COOKIE_LEMONADE",
+      "BREAD",
+      "BREAD_OLIVE",
+      "BREAD_LEMONADE",
+      "BREAD_AND_HAM",
+      "BREAD_AND_HAM_AND_OLIVE_LEMONADE",
+      "EGG",
+      "EGG_LEMONADE",
+      "EGG_AND_OLIVE",
+      "EGG_AND_OLIVE_LEMONADE",
+      "EGG_SANDWICH",
+      "EGG_SANDWICH_LEMONADE",
+      "EGG_AND_HAM_SANDWICH",
+      "EGG_AND_HAM_SANDWICH_LEMONADE",
+      "EGG_AND_OLIVE_SANDWICH",
+      "EGG_AND_OLIVE_SANDWICH_LEMONADE",
+      "EGG_AND_HAM_AND_OLIVE_SANDWICH",
+      "EGG_AND_HAM_AND_OLIVE_SANDWICH_LEMONADE"
+};
 
 
     //actually code: order[14] list = {EGGNHAMSANDWICH, }
@@ -86,6 +88,16 @@ public class orders : MonoBehaviour
     {
         startPos = transform.position;
         frenchtoast = GameObject.Find("Receivers/Pudu/French Toast");
+
+        string randomOrder = GetRandomOrder();
+        Debug.Log("Order:" + randomOrder);
+
+        string GetRandomOrder()
+        {
+            int index = Random.Range(0, orderssss.Count);
+            return orderssss[index];
+        }
+
     }
     
 
@@ -112,81 +124,43 @@ public class orders : MonoBehaviour
                 {
                     order COOKIE;
 
-                }
-                if (randomNum == 2)
-                {
+                } else if (randomNum == 2) {
                     
-                }
-                if (randomNum == 3)
-                {
+                } else if (randomNum == 3) {
                     
-                }
-                if (randomNum == 4)
-                {
+                } else if (randomNum == 4) {
 
-                }
-                if (randomNum == 5)
-                {
+                } else if (randomNum == 5) {
 
-                }
-                if (randomNum == 6)
-                {
+                } else if (randomNum == 6) {
 
-                }
-                if (randomNum == 7)
-                {
+                } else if (randomNum == 7) {
 
-                }
-                if (randomNum == 8)
-                {
+                } else if (randomNum == 8) {
 
-                }
-                if (randomNum == 9)
-                {
+                } else if (randomNum == 9) {
 
-                }
-                if (randomNum == 10)
-                {
+                } else if (randomNum == 10) {
 
-                }
-                if (randomNum == 11)
-                {
+                } else if (randomNum == 11) {
 
-                }
-                if (randomNum == 12)
-                {
+                } else if (randomNum == 12) {
 
-                }
-                if (randomNum == 13)
-                {
+                } else if (randomNum == 13) {
 
-                }
-                if (randomNum == 14)
-                {
+                } else if (randomNum == 14) {
 
-                }
-                if (randomNum == 15)
-                {
+                } else if (randomNum == 15) {
 
-                }
-                if (randomNum == 16)
-                {
+                } else if (randomNum == 16) {
 
-                }
-                if (randomNum == 17)
-                {
+                } else if (randomNum == 17) {
 
-                }
-                if (randomNum == 18)
-                {
+                } else if (randomNum == 18) {
 
-                }
-                if (randomNum == 19)
-                {
+                } else if (randomNum == 19) {
 
-                }
-                if (randomNum == 20)
-                {
+                } else if (randomNum == 20) {
 
                 }
                 //gameObject.FindChildByName("chocoCookie").setActive;
@@ -222,9 +196,30 @@ public class orders : MonoBehaviour
             child.gameObject.SetActive(false);
         }
         gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
-        transform.position = startPos - new Vector3(0, 0, 0.5f);
+        transform.position = startPos - new Vector3(0, 0, 10f);
         moving = true;
-        
+        cloned = false;
         
     }
 }
+
+//order COOKIE = new order(false, false, true, false, false, false);
+//order COOKIE_LEMONADE = new order(false, true, true, false, false, false);
+//order BREAD = new order(false, false, false, true, false, false);
+//order BREAD_OLIVE = new order(false, false, false, true, false, true);
+//order BREAD_LEMONADE = new order(false, true, false, true, false, false);
+//order BREAD_AND_HAM = new order(false, false, false, true, true, false);
+//order BREAD_AND_HAM_LEMONADE = new order(false, true, false, true, true, false);
+//order BREAD_AND_HAM_AND_OLIVE = new order(false, false, false, true, true, true);
+//order BREAD_AND_HAM_AND_OLIVE_LEMONADE = new order(false, true, false, true, true, true);
+//order EGG = new order(true, false, false, false, false, false);
+//order EGG_LEMONADE = new order(true, true, false, false, false, false);
+//order EGG_AND_OLIVE = new order(true, false, false, false, false, true);
+//order EGG_AND_OLIVE_LEMONADE = new order(true, true, false, false, false, true);
+//order EGG_SANDWICH = new order(true, false, false, true, false, false);
+//order EGG_AND_HAM_SANDWICH = new order(true, false, false, true, true, false);
+//order EGG_AND_HAM_SANDWICH_LEMONADE = new order(true, true, false, true, true, false);
+//order EGG_AND_OLIVE_SANDWICH = new order(true, false, false, true, false, true);
+//order EGG_AND_OLIVE_SANDWICH_LEMONADE = new order(true, true, false, true, false, true);
+//order EGG_AND_HAM_AND_OLIVE_SANDWICH = new order(true, false, false, true, true, true);
+//order EGG_AND_HAM_AND_OLIVE_SANDWICH_LEMONADE = new order(true, true, false, true, true, true);
