@@ -12,6 +12,7 @@ public class Interact : MonoBehaviour
     public AudioSource pickUp;
     public AudioSource putDown;
     public AudioSource trashAway;
+    public AudioSource gooseSound;
     public GameObject trashPrefab;
 
     public GameObject Prefab;
@@ -39,7 +40,7 @@ public class Interact : MonoBehaviour
 
             if (triggerName == "Egg")
             {
-                pickUp.Play();
+                gooseSound.Play();
                 PickUpItem(eggPrefab, "egg");
             }
 
