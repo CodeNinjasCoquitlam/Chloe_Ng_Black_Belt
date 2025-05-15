@@ -32,6 +32,8 @@ public class orders : MonoBehaviour
     public bool cloned = false;
     public int randomNum;
 
+    public AudioSource PuduCameBack;
+
     order COOKIE = new order("Cookie", false, false, true, false, false, false);
     order COOKIE_LEMONADE = new order("Cookie Lemonade", false, true, true, false, false, false);
     order BREAD = new order("Bread", false, false, false, true, false, false);
@@ -147,8 +149,9 @@ public class orders : MonoBehaviour
             
             if(transform.position.z <= startPos.z)
             {
-                //makes it move forward to the table    
+                //makes it move forward to the table
                 transform.position += new Vector3(0, 0, 1);
+                PuduCameBack.Play();
             } else
             {
                 
