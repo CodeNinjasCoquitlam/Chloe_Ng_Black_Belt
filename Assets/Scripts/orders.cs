@@ -31,6 +31,7 @@ public class orders : MonoBehaviour
     public bool ordering = false;
     public bool cloned = false;
     public int randomNum;
+    public bool hasFood = false;
 
     public AudioSource PuduCameBack;
 
@@ -92,7 +93,7 @@ public class orders : MonoBehaviour
     {
         string name;
         bool egg;
-        bool leomonade;
+        bool lemonade;
         bool cookie;
         bool bread;
         bool cream;
@@ -107,7 +108,7 @@ public class orders : MonoBehaviour
         {
             this.name = na;
             this.egg = eg;
-            this.leomonade = le;
+            this.lemonade = le;
             this.cookie = co;
             this.bread = br;
             this.cream = cr;
@@ -141,6 +142,7 @@ public class orders : MonoBehaviour
     {
         if(ordering == true)
         {
+ 
             //turns it right
             transform.Rotate(Vector3.up * 60 * Time.deltaTime);
         }
@@ -236,11 +238,23 @@ public class orders : MonoBehaviour
                 cloned = true;
             }
         }
-        if (Input.GetKeyDown("v"))
-        {
-            //starts everything
-            ordering = true;
+
+           if (Input.GetKeyDown("c"))
+            {
+
+            Debug.Log("C was pressed");
+
+              if (hasFood)
+            {
+                Debug.Log("hasFood is TRUE");
+                ordering = true;
+                hasFood = false;
+            } else
+            {
+                Debug.Log("hasFood is FALSE");
+            }
         }
+
 
     }
 

@@ -24,6 +24,7 @@ public class Interact : MonoBehaviour
     public GameObject eggPrefab;
     public GameObject friedEggPrefab;
     public GameObject FrenchToastPrefab;
+    public orders OrderManager;
 
     public GameObject heldItem;
     public string heldItemName;
@@ -118,36 +119,42 @@ public class Interact : MonoBehaviour
                     putDown.Play();
                     PlaceHeldItem();
                     GameObject.Find("Receivers/Pudu/French Toast/toastSlice").SetActive(true);
+                    OrderManager.hasFood = true;
                 }
                 else if (heldItemName == "friedEgg")
                 {
                     putDown.Play();
                     PlaceHeldItem();
                     GameObject.Find("Receivers/Pudu/French Toast/friedEgg").SetActive(true);
+                    OrderManager.hasFood = true;
                 }
                 else if (heldItemName == "cream")
                 {
                     putDown.Play();
                     PlaceHeldItem();
                     GameObject.Find("Receivers/Pudu/French Toast/Cream").SetActive(true);
+                    OrderManager.hasFood = true;
                 }
                 else if (heldItemName == "lemonade")
                 {
                     putDown.Play();
                     PlaceHeldItem();
                     GameObject.Find("Receivers/Pudu/French Toast/Lemonade").SetActive(true);
+                    OrderManager.hasFood = true;
                 }
                 else if (heldItemName == "cookie")
                 {
                     putDown.Play();
                     PlaceHeldItem();
                     GameObject.Find("Receivers/Pudu/French Toast/chocoCookie").SetActive(true);
+                    OrderManager.hasFood = true;
                 }
                 else if (heldItemName == "olive")
                 {
                     putDown.Play();
                     PlaceHeldItem();
                     GameObject.Find("Receivers/Pudu/French Toast/olives").SetActive(true);
+                    OrderManager.hasFood = true;
                 }
             }
         }
