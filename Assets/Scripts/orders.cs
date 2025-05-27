@@ -32,6 +32,7 @@ public class orders : MonoBehaviour
     public bool cloned = false;
     public int randomNum;
     public bool hasFood = false;
+    public int price;
 
     public AudioSource PuduCameBack;
 
@@ -125,6 +126,7 @@ public class orders : MonoBehaviour
     {
         startPos = transform.position;
         frenchtoast = GameObject.Find("Receivers/Pudu/French Toast");
+        
 
         //string randomOrder = GetRandomOrder();
         //Debug.Log("Order:" + randomOrder);
@@ -158,14 +160,16 @@ public class orders : MonoBehaviour
             {
                 
                 moving = false;
-                randomNum = Random.Range(1, 20);
+                randomNum = 1;//Random.Range(1, 20);
 
                 if (randomNum == 1){
-                    order COOKIE = new order("Cookie", false, false, true, false, false, false); ;
+                    order COOKIE = new order("Cookie", false, false, true, false, false, false); 
                     COOKIE.DisplayName();
+                    price = 5;
                 } else if (randomNum == 2) {
                     order COOKIE_LEMONADE = new order("Cookie Lemonade", false, true, true, false, false, false);
                     COOKIE_LEMONADE.DisplayName();
+                    price = 5;
                 } else if (randomNum == 3) {
                     order BREAD = new order("Bread", false, false, false, true, false, false);
                     BREAD.DisplayName();
@@ -239,20 +243,20 @@ public class orders : MonoBehaviour
             }
         }
 
-           if (Input.GetKeyDown("c"))
-            {
-
+        if (Input.GetKeyDown("c"))
+        {
+            
             Debug.Log("C was pressed");
 
               if (hasFood)
-            {
+                {
                 Debug.Log("hasFood is TRUE");
                 ordering = true;
                 hasFood = false;
-            } else
-            {
+              } else
+              {
                 Debug.Log("hasFood is FALSE");
-            }
+              }
         }
 
 

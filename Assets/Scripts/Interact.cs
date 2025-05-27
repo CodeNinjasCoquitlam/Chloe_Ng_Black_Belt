@@ -14,6 +14,7 @@ public class Interact : MonoBehaviour
     public AudioSource trashAway;
     public AudioSource gooseSound;
     public GameObject trashPrefab;
+    public int total = 0;
 
     public GameObject Prefab;
     public GameObject olivePrefab;
@@ -28,7 +29,12 @@ public class Interact : MonoBehaviour
 
     public GameObject heldItem;
     public string heldItemName;
+    private List<string> ingredientsGathered;
 
+    void Start()
+    {
+        ingredientsGathered = new List<string>();
+    }
     void Update()
     {
         if (Input.GetKeyDown("space"))
@@ -114,6 +120,7 @@ public class Interact : MonoBehaviour
 
             if (triggerName == "Receivers")
             {
+                ingredientsGathered.Add(heldItemName);
                 if (heldItemName == "Toast")
                 {
                     putDown.Play();
@@ -148,6 +155,29 @@ public class Interact : MonoBehaviour
                     PlaceHeldItem();
                     GameObject.Find("Receivers/Pudu/French Toast/chocoCookie").SetActive(true);
                     OrderManager.hasFood = true;
+                    if (OrderManager.randomNum == 1 )
+                    {
+                        //just checking
+                        Debug.Log("cookie added to order (correct)");
+
+
+                        if (ingredientsGathered.Contains("cookie"))
+                        {
+                            total += OrderManager.price;
+                            Debug.Log(total);
+                        }
+                        //Sensei Matthew: the next thing to do, is fill out all of the other order cases.
+                        //for example, if randomNum == 2, the order is Cookie and Lemonade, so we need to
+                        //check if cookie and Lemonade both exist (are contained) in the 'ingedientsGathered' List
+                        //if they both are, add the price of the order to total.
+                    }
+                    else if(OrderManager.randomNum == 2){
+                        (ingredientsGathered.Contains("cookie") && )//contains lemonade)
+                        {
+                            total += OrderManager.price;
+                            Debug.Log(total);
+                        }
+                    }
                 }
                 else if (heldItemName == "olive")
                 {
