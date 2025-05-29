@@ -160,7 +160,7 @@ public class orders : MonoBehaviour
             {
                 
                 moving = false;
-                randomNum = 1;//Random.Range(1, 20);
+                randomNum = Random.Range(1, 20);
 
                 if (randomNum == 1){
                     order COOKIE = new order("Cookie", false, false, true, false, false, false); 
