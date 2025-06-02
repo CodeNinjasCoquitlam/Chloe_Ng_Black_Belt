@@ -115,6 +115,16 @@ public class Interact : MonoBehaviour
                 ingredientsGathered.Add(heldItemName);
                 if (heldItemName == "Toast")
                 {
+                    Debug.Log("toast added");
+
+
+                    //for (int i = 0; i < ingredientsGathered.Count; i++){
+
+                      //  Debug.Log(ingredientsGathered[i]);
+                    
+                    //}
+
+
                     putDown.Play();
                     PlaceHeldItem();
                     GameObject.Find("Receivers/Pudu/French Toast/toastSlice").SetActive(true);
@@ -126,6 +136,8 @@ public class Interact : MonoBehaviour
                             total += OrderManager.price;
                             Debug.Log("Bread");
                             Debug.Log(total);
+
+                            ingredientsGathered.Clear();
                         }
                         
                     }
@@ -136,6 +148,8 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("Bread lemonade");
                                 Debug.Log(total);
+                                ingredientsGathered.Clear();
+
                             }
                         }
                     else if (OrderManager.randomNum == 5)
@@ -145,6 +159,7 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("Bread + ham");
                                 Debug.Log(total);
+                                ingredientsGathered.Clear();
                             }
                         }
                     else if (OrderManager.randomNum == 6)
@@ -154,6 +169,7 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("Bread + ham lemonade");
                                 Debug.Log(total);
+                                ingredientsGathered.Clear();
                             }
                         }
                     else if (OrderManager.randomNum == 7)
@@ -163,6 +179,7 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("Bread olive");
                                 Debug.Log(total);
+                                ingredientsGathered.Clear();
                             }
                         }
                     else if (OrderManager.randomNum == 8)
@@ -172,6 +189,7 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("olive + ham sandwich");
                                 Debug.Log(total);
+                                ingredientsGathered.Clear();
                             }
                         }
                     else if (OrderManager.randomNum == 9)
@@ -181,6 +199,7 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("olive + ham sandwich lemonade");
                                 Debug.Log(total);
+                                ingredientsGathered.Clear();
                             }
                         }
                     else if (OrderManager.randomNum == 14)
@@ -190,6 +209,7 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("egg sandwich");
                                 Debug.Log(total);
+                                ingredientsGathered.Clear();
                             }
                         }
                     else if (OrderManager.randomNum == 15)
@@ -199,6 +219,7 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("egg ham sandwich");
                                 Debug.Log(total);
+                            ingredientsGathered.Clear();
                             }
                         }
                     else if (OrderManager.randomNum == 16)
@@ -208,6 +229,7 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("egg ham sandwich lemonade");
                                 Debug.Log(total);
+                            ingredientsGathered.Clear();
                             }
                         }
                     else if (OrderManager.randomNum == 17)
@@ -217,6 +239,7 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("olive + egg sandwich");
                                 Debug.Log(total);
+                                ingredientsGathered.Clear();
                             }
                         }
                     else if (OrderManager.randomNum == 18)
@@ -226,6 +249,7 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("olive + egg sandwich lemonade");
                                 Debug.Log(total);
+                                ingredientsGathered.Clear();
                             }
                         }
                     else if (OrderManager.randomNum == 19)
@@ -235,7 +259,8 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("olive + egg + ham sandwich");
                                 Debug.Log(total);
-                            }
+                                ingredientsGathered.Clear();
+                        }
                         }
                     else if (OrderManager.randomNum == 20)
                         {
@@ -244,11 +269,14 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("olive + egg + ham sandwich lemonade");
                                 Debug.Log(total);
-                            }
+                                ingredientsGathered.Clear();
+                        }
                         }
                 }
                 else if (heldItemName == "friedEgg")
                 {
+
+                    Debug.Log("egg added");
                     putDown.Play();
                     PlaceHeldItem();
                     GameObject.Find("Receivers/Pudu/French Toast/friedEgg").SetActive(true);
@@ -260,6 +288,7 @@ public class Interact : MonoBehaviour
                             total += OrderManager.price;
                             Debug.Log("egg");
                             Debug.Log(total);
+                            ingredientsGathered.Clear();
                         }
                         
                     }
@@ -270,7 +299,8 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("egg lemonade");
                                 Debug.Log(total);
-                            }
+                                ingredientsGathered.Clear();
+                        }
                         }
                     else if (OrderManager.randomNum == 12)
                         {
@@ -279,7 +309,8 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("olive + egg");
                                 Debug.Log(total);
-                            }
+                                ingredientsGathered.Clear();
+                        }
                         }
                     else if (OrderManager.randomNum == 13)
                         {
@@ -288,7 +319,8 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("olive + egg lemonade");
                                 Debug.Log(total);
-                            }
+                                ingredientsGathered.Clear();
+                        }
                         }
                     else if (OrderManager.randomNum == 14)
                         {
@@ -297,7 +329,8 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("egg sandwich");
                                 Debug.Log(total);
-                            }
+                                ingredientsGathered.Clear();
+                        }
                         }
                     else if (OrderManager.randomNum == 15)
                         {
@@ -306,6 +339,7 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("egg ham sandwich");
                                 Debug.Log(total);
+                                ingredientsGathered.Clear();
                             }
                         }
                     else if (OrderManager.randomNum == 16)
@@ -315,6 +349,7 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("egg ham sandwich lemonade");
                                 Debug.Log(total);
+                                ingredientsGathered.Clear();
                             }
                         }
                     else if (OrderManager.randomNum == 17)
@@ -324,6 +359,7 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("olive + egg sandwich");
                                 Debug.Log(total);
+                                ingredientsGathered.Clear();
                             }
                         }
                     else if (OrderManager.randomNum == 18)
@@ -332,6 +368,7 @@ public class Interact : MonoBehaviour
                             {
                                 total += OrderManager.price;
                                 Debug.Log("olive + egg sandwich lemonade");
+                                ingredientsGathered.Clear();
                                 Debug.Log(total);
                             }
                         }
@@ -341,6 +378,7 @@ public class Interact : MonoBehaviour
                             {
                                 total += OrderManager.price;
                                 Debug.Log("olive + egg + ham sandwich");
+                                ingredientsGathered.Clear();
                                 Debug.Log(total);
                             }
                         }
@@ -350,12 +388,14 @@ public class Interact : MonoBehaviour
                             {
                                 total += OrderManager.price;
                                 Debug.Log("olive + egg + ham sandwich lemonade");
+                                ingredientsGathered.Clear();
                                 Debug.Log(total);
                             }
                         }
                 }
                 else if (heldItemName == "cream")
                 {
+                    Debug.Log("cream added");
                     putDown.Play();
                     PlaceHeldItem();
                     GameObject.Find("Receivers/Pudu/French Toast/Cream").SetActive(true);
@@ -366,6 +406,7 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("Bread + ham");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                         
@@ -377,6 +418,7 @@ public class Interact : MonoBehaviour
                             {
                                 total += OrderManager.price;
                                 Debug.Log("Bread + ham lemonade");
+                                ingredientsGathered.Clear();
                                 Debug.Log(total);
                             }
                         }
@@ -386,6 +428,7 @@ public class Interact : MonoBehaviour
                             {
                                 total += OrderManager.price;
                                 Debug.Log("olive + ham sandwich");
+                                ingredientsGathered.Clear();
                                 Debug.Log(total);
                             }
                         } 
@@ -395,6 +438,7 @@ public class Interact : MonoBehaviour
                             {
                                 total += OrderManager.price;
                                 Debug.Log("olive + ham sandwich lemonade");
+                                ingredientsGathered.Clear();
                                 Debug.Log(total);
                             }
                         }
@@ -404,6 +448,8 @@ public class Interact : MonoBehaviour
                             {
                                 total += OrderManager.price;
                                 Debug.Log("egg ham sandwich");
+
+                                ingredientsGathered.Clear();
                                 Debug.Log(total);
                             }
                         }
@@ -413,6 +459,7 @@ public class Interact : MonoBehaviour
                             {
                                 total += OrderManager.price;
                                 Debug.Log("egg ham sandwich lemonade");
+                                ingredientsGathered.Clear();
                                 Debug.Log(total);
                             }
                         }
@@ -422,6 +469,7 @@ public class Interact : MonoBehaviour
                             {
                                 total += OrderManager.price;
                                 Debug.Log("olive + egg + ham sandwich");
+                                ingredientsGathered.Clear();
                                 Debug.Log(total);
                             }
                         }
@@ -431,12 +479,15 @@ public class Interact : MonoBehaviour
                             {
                                 total += OrderManager.price;
                                 Debug.Log("olive + egg + ham sandwich lemonade");
+                                ingredientsGathered.Clear();
                                 Debug.Log(total);
                             }
                         }
                 }
                 else if (heldItemName == "lemonade")
                 {
+
+                    Debug.Log("lemonade added");
                     putDown.Play();
                     PlaceHeldItem();
                     GameObject.Find("Receivers/Pudu/French Toast/Lemonade").SetActive(true);
@@ -447,6 +498,7 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("Cookie + lemonade");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                     }
@@ -456,6 +508,7 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("Bread lemonade");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                     }
@@ -465,6 +518,7 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("Bread + ham lemonade");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                     }
@@ -474,6 +528,7 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("olive + ham sandwich lemonade");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                     }
@@ -483,6 +538,7 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("egg lemonade");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                     }
@@ -492,6 +548,7 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("olive + egg lemonade");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                     }
@@ -501,6 +558,7 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("egg ham sandwich lemonade");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                     }
@@ -510,6 +568,7 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("olive + egg sandwich lemonade");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                     }
@@ -519,12 +578,15 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("olive + egg + ham sandwich lemonade");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                     }
                 }
                 else if (heldItemName == "cookie")
                 {
+
+                    Debug.Log("cookie added");
                     putDown.Play();
                     PlaceHeldItem();
                     GameObject.Find("Receivers/Pudu/French Toast/chocoCookie").SetActive(true);
@@ -539,6 +601,7 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("Cookie");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                         //Sensei Matthew: the next thing to do, is fill out all of the other order cases.
@@ -551,12 +614,15 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("Cookie + lemonade");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                     }
                 }
                 else if (heldItemName == "olive")
                 {
+
+                    Debug.Log("olive added");
                     putDown.Play();
                     PlaceHeldItem();
                     GameObject.Find("Receivers/Pudu/French Toast/olives").SetActive(true);
@@ -567,6 +633,7 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("Olive sandwich");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                     }
@@ -576,6 +643,7 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("olive + ham sandwich");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                     }
@@ -585,6 +653,7 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("olive + ham sandwich lemonade");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                     }
@@ -594,6 +663,7 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("olive + egg");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                     }
@@ -603,6 +673,7 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("olive + egg lemonade");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                     }
@@ -612,6 +683,7 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("olive + egg sandwich");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                     }
@@ -621,6 +693,7 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("olive + egg sandwich lemonade");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                     }
@@ -630,6 +703,7 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("olive + egg + ham sandwich");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                     }
@@ -639,6 +713,7 @@ public class Interact : MonoBehaviour
                         {
                             total += OrderManager.price;
                             Debug.Log("olive + egg + ham sandwich lemonade");
+                            ingredientsGathered.Clear();
                             Debug.Log(total);
                         }
                     }
