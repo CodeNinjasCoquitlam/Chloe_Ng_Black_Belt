@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class Interact : MonoBehaviour
 {
     public string triggerName = "";
 
     public Stove stove;
+    public Text moneyEarned;
 
     public AudioSource stoveSound;
     public AudioSource pickUp;
@@ -136,6 +137,7 @@ public class Interact : MonoBehaviour
                             total += OrderManager.price;
                             Debug.Log("Bread");
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
 
                             ingredientsGathered.Clear();
                         }
@@ -149,6 +151,7 @@ public class Interact : MonoBehaviour
                                 Debug.Log("Bread lemonade");
                                 Debug.Log(total);
                                 ingredientsGathered.Clear();
+                                moneyEarned.text = "$" + total.ToString();
 
                             }
                         }
@@ -160,6 +163,7 @@ public class Interact : MonoBehaviour
                                 Debug.Log("Bread + ham");
                                 Debug.Log(total);
                                 ingredientsGathered.Clear();
+                                moneyEarned.text = "$" + total.ToString();
                             }
                         }
                     else if (OrderManager.randomNum == 6)
@@ -169,6 +173,7 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("Bread + ham lemonade");
                                 Debug.Log(total);
+                                moneyEarned.text = "$" + total.ToString();
                                 ingredientsGathered.Clear();
                             }
                         }
@@ -177,18 +182,21 @@ public class Interact : MonoBehaviour
                             if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("olive"))
                             {
                                 total += OrderManager.price;
+                                moneyEarned.text = "$" + total.ToString();
                                 Debug.Log("Bread olive");
                                 Debug.Log(total);
                                 ingredientsGathered.Clear();
+                                moneyEarned.text = "$" + total.ToString();
                             }
                         }
                     else if (OrderManager.randomNum == 8)
                         {
-                            if (ingredientsGathered.Contains("olive") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("Toast"))
+                            if(ingredientsGathered.Contains("olive") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("Toast"))
                             {
                                 total += OrderManager.price;
                                 Debug.Log("olive + ham sandwich");
                                 Debug.Log(total);
+                                moneyEarned.text = "$" + total.ToString();
                                 ingredientsGathered.Clear();
                             }
                         }
@@ -199,6 +207,7 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("olive + ham sandwich lemonade");
                                 Debug.Log(total);
+                                moneyEarned.text = "$" + total.ToString();
                                 ingredientsGathered.Clear();
                             }
                         }
@@ -209,6 +218,7 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("egg sandwich");
                                 Debug.Log(total);
+                                moneyEarned.text = "$" + total.ToString();
                                 ingredientsGathered.Clear();
                             }
                         }
@@ -219,8 +229,9 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("egg ham sandwich");
                                 Debug.Log(total);
-                            ingredientsGathered.Clear();
-                            }
+                                ingredientsGathered.Clear();
+                                moneyEarned.text = "$" + total.ToString();
+                        }
                         }
                     else if (OrderManager.randomNum == 16)
                         {
@@ -229,8 +240,9 @@ public class Interact : MonoBehaviour
                                 total += OrderManager.price;
                                 Debug.Log("egg ham sandwich lemonade");
                                 Debug.Log(total);
-                            ingredientsGathered.Clear();
-                            }
+                                ingredientsGathered.Clear();
+                                moneyEarned.text = "$" + total.ToString();
+                        }
                         }
                     else if (OrderManager.randomNum == 17)
                         {
@@ -240,16 +252,18 @@ public class Interact : MonoBehaviour
                                 Debug.Log("olive + egg sandwich");
                                 Debug.Log(total);
                                 ingredientsGathered.Clear();
+                                moneyEarned.text = "$" + total.ToString();
                             }
                         }
                     else if (OrderManager.randomNum == 18)
                         {
-                            if (ingredientsGathered.Contains("olive") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("lemonade"))
+                            if (ingredientsGathered.Contains("olive")&& ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("lemonade"))
                             {
                                 total += OrderManager.price;
                                 Debug.Log("olive + egg sandwich lemonade");
                                 Debug.Log(total);
                                 ingredientsGathered.Clear();
+                                moneyEarned.text = "$" + total.ToString();
                             }
                         }
                     else if (OrderManager.randomNum == 19)
@@ -260,6 +274,9 @@ public class Interact : MonoBehaviour
                                 Debug.Log("olive + egg + ham sandwich");
                                 Debug.Log(total);
                                 ingredientsGathered.Clear();
+                                moneyEarned.text = "$" + total.ToString();
+
+
                         }
                         }
                     else if (OrderManager.randomNum == 20)
@@ -270,6 +287,8 @@ public class Interact : MonoBehaviour
                                 Debug.Log("olive + egg + ham sandwich lemonade");
                                 Debug.Log(total);
                                 ingredientsGathered.Clear();
+                                moneyEarned.text = "$" + total.ToString();
+
                         }
                         }
                 }
@@ -289,6 +308,8 @@ public class Interact : MonoBehaviour
                             Debug.Log("egg");
                             Debug.Log(total);
                             ingredientsGathered.Clear();
+                            moneyEarned.text = "$" + total.ToString();
+
                         }
                         
                     }
@@ -300,6 +321,8 @@ public class Interact : MonoBehaviour
                                 Debug.Log("egg lemonade");
                                 Debug.Log(total);
                                 ingredientsGathered.Clear();
+                                moneyEarned.text = "$" + total.ToString();
+
                         }
                         }
                     else if (OrderManager.randomNum == 12)
@@ -310,6 +333,8 @@ public class Interact : MonoBehaviour
                                 Debug.Log("olive + egg");
                                 Debug.Log(total);
                                 ingredientsGathered.Clear();
+                                moneyEarned.text = "$" + total.ToString();
+
                         }
                         }
                     else if (OrderManager.randomNum == 13)
@@ -320,6 +345,8 @@ public class Interact : MonoBehaviour
                                 Debug.Log("olive + egg lemonade");
                                 Debug.Log(total);
                                 ingredientsGathered.Clear();
+                                moneyEarned.text = "$" + total.ToString();
+
                         }
                         }
                     else if (OrderManager.randomNum == 14)
@@ -330,7 +357,8 @@ public class Interact : MonoBehaviour
                                 Debug.Log("egg sandwich");
                                 Debug.Log(total);
                                 ingredientsGathered.Clear();
-                        }
+                                moneyEarned.text = "$" + total.ToString();
+                            }
                         }
                     else if (OrderManager.randomNum == 15)
                         {
@@ -340,6 +368,7 @@ public class Interact : MonoBehaviour
                                 Debug.Log("egg ham sandwich");
                                 Debug.Log(total);
                                 ingredientsGathered.Clear();
+                                moneyEarned.text = "$" + total.ToString();
                             }
                         }
                     else if (OrderManager.randomNum == 16)
@@ -350,6 +379,8 @@ public class Interact : MonoBehaviour
                                 Debug.Log("egg ham sandwich lemonade");
                                 Debug.Log(total);
                                 ingredientsGathered.Clear();
+                                moneyEarned.text = "$" + total.ToString();
+
                             }
                         }
                     else if (OrderManager.randomNum == 17)
@@ -360,6 +391,8 @@ public class Interact : MonoBehaviour
                                 Debug.Log("olive + egg sandwich");
                                 Debug.Log(total);
                                 ingredientsGathered.Clear();
+                                moneyEarned.text = "$" + total.ToString();
+                            
                             }
                         }
                     else if (OrderManager.randomNum == 18)
@@ -370,6 +403,8 @@ public class Interact : MonoBehaviour
                                 Debug.Log("olive + egg sandwich lemonade");
                                 ingredientsGathered.Clear();
                                 Debug.Log(total);
+                                moneyEarned.text = "$" + total.ToString();
+                            
                             }
                         }
                     else if (OrderManager.randomNum == 19)
@@ -380,6 +415,8 @@ public class Interact : MonoBehaviour
                                 Debug.Log("olive + egg + ham sandwich");
                                 ingredientsGathered.Clear();
                                 Debug.Log(total);
+                                moneyEarned.text = "$" + total.ToString();
+
                             }
                         }
                     else if (OrderManager.randomNum == 20)
@@ -390,6 +427,8 @@ public class Interact : MonoBehaviour
                                 Debug.Log("olive + egg + ham sandwich lemonade");
                                 ingredientsGathered.Clear();
                                 Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
+                            //
                             }
                         }
                 }
@@ -408,6 +447,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("Bread + ham");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                         
 
@@ -430,6 +470,8 @@ public class Interact : MonoBehaviour
                                 Debug.Log("olive + ham sandwich");
                                 ingredientsGathered.Clear();
                                 Debug.Log(total);
+                                moneyEarned.text = "$" + total.ToString();
+                            //
                             }
                         } 
                     else if (OrderManager.randomNum == 9)
@@ -440,6 +482,8 @@ public class Interact : MonoBehaviour
                                 Debug.Log("olive + ham sandwich lemonade");
                                 ingredientsGathered.Clear();
                                 Debug.Log(total);
+                                moneyEarned.text = "$" + total.ToString();
+                            
                             }
                         }
                     else if (OrderManager.randomNum == 15)
@@ -451,6 +495,7 @@ public class Interact : MonoBehaviour
 
                                 ingredientsGathered.Clear();
                                 Debug.Log(total);
+                                moneyEarned.text = "$" + total.ToString();
                             }
                         }
                     else if (OrderManager.randomNum == 16)
@@ -461,6 +506,8 @@ public class Interact : MonoBehaviour
                                 Debug.Log("egg ham sandwich lemonade");
                                 ingredientsGathered.Clear();
                                 Debug.Log(total);
+                                moneyEarned.text = "$" + total.ToString();
+
                             }
                         }
                     else if (OrderManager.randomNum == 19)
@@ -471,6 +518,7 @@ public class Interact : MonoBehaviour
                                 Debug.Log("olive + egg + ham sandwich");
                                 ingredientsGathered.Clear();
                                 Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                             }
                         }
                     else if (OrderManager.randomNum == 20)
@@ -481,6 +529,7 @@ public class Interact : MonoBehaviour
                                 Debug.Log("olive + egg + ham sandwich lemonade");
                                 ingredientsGathered.Clear();
                                 Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                             }
                         }
                 }
@@ -500,6 +549,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("Cookie + lemonade");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                     }
                     else if (OrderManager.randomNum == 4)
@@ -510,6 +560,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("Bread lemonade");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                     }
                     else if (OrderManager.randomNum == 6)
@@ -520,6 +571,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("Bread + ham lemonade");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                     }
                     else if (OrderManager.randomNum == 9)
@@ -530,6 +582,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("olive + ham sandwich lemonade");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                     }
                     else if (OrderManager.randomNum == 11)
@@ -540,6 +593,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("egg lemonade");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                     }
                     else if (OrderManager.randomNum == 13)
@@ -550,6 +604,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("olive + egg lemonade");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                     }
                     else if (OrderManager.randomNum == 16)
@@ -560,6 +615,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("egg ham sandwich lemonade");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                     }
                     else if (OrderManager.randomNum == 18)
@@ -570,6 +626,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("olive + egg sandwich lemonade");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                     }
                     else if (OrderManager.randomNum == 20)
@@ -580,6 +637,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("olive + egg + ham sandwich lemonade");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                     }
                 }
@@ -603,6 +661,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("Cookie");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                         //Sensei Matthew: the next thing to do, is fill out all of the other order cases.
                         //for example, if randomNum == 2, the order is Cookie and Lemonade, so we need to
@@ -616,6 +675,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("Cookie + lemonade");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                     }
                 }
@@ -635,6 +695,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("Olive sandwich");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                     }
                     else if (OrderManager.randomNum == 8)
@@ -645,6 +706,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("olive + ham sandwich");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                     }
                     else if (OrderManager.randomNum == 9)
@@ -655,6 +717,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("olive + ham sandwich lemonade");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                     }
                     else if (OrderManager.randomNum == 12)
@@ -665,6 +728,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("olive + egg");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                     }
                     else if (OrderManager.randomNum == 13)
@@ -675,6 +739,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("olive + egg lemonade");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                     }
                     else if (OrderManager.randomNum == 17)
@@ -685,6 +750,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("olive + egg sandwich");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                     }
                     else if (OrderManager.randomNum == 18)
@@ -695,6 +761,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("olive + egg sandwich lemonade");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                     }
                     else if (OrderManager.randomNum == 19)
@@ -705,6 +772,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("olive + egg + ham sandwich");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                     }
                     else if (OrderManager.randomNum == 20)
@@ -715,6 +783,7 @@ public class Interact : MonoBehaviour
                             Debug.Log("olive + egg + ham sandwich lemonade");
                             ingredientsGathered.Clear();
                             Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
                     }
                 }
