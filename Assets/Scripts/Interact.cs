@@ -65,7 +65,7 @@ public class Interact : MonoBehaviour
                 pickUp.Play();
                 PickUpItem(cookiePrefab, "cookie");
             }
-            if (triggerName == "Olives")
+            if (triggerName == "olives")
             {
                 pickUp.Play();
                 PickUpItem(olivePrefab, "olive");
@@ -685,7 +685,7 @@ public class Interact : MonoBehaviour
                     Debug.Log("olive added");
                     putDown.Play();
                     PlaceHeldItem();
-                    GameObject.Find("Receivers/Pudu/French Toast/olives").SetActive(true);
+                    GameObject.Find("Receivers/Pudu/French Toast/olive").SetActive(true);
                     OrderManager.hasFood = true;
                     if (OrderManager.randomNum == 7)
                     {

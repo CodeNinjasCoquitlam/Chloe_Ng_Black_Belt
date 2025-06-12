@@ -28,6 +28,8 @@ public class orders : MonoBehaviour
 //EGG_HAM_OLIVE_SANDWICH_LEMONADE
     public Vector3 startPos;
     public GameObject frenchtoast;
+    public Text orderName;
+    private string currentOrderName;
     public bool moving = false;
     public bool ordering = false;
     public bool cloned = false;
@@ -36,6 +38,7 @@ public class orders : MonoBehaviour
     public int price;
     public Image currentOrderPhoto;
     public Sprite[] orderPhotos;
+    
 
     public AudioSource PuduCameBack;
 
@@ -122,6 +125,9 @@ public class orders : MonoBehaviour
         public void DisplayName()
         {
             Debug.Log(this.name);
+            //currentOrderName = this.name;
+            //orderName.text = currentOrderName; 
+
         }
     }
 
@@ -244,6 +250,7 @@ public class orders : MonoBehaviour
             order BREAD_LEMONADE = new order("Bread Lemonade", false, false, true, true, false, false);
             BREAD_LEMONADE.DisplayName();
             price = 5;
+            currentOrderPhoto.sprite = orderPhotos[3];
 
         }
         else if (randomNum == 5)
@@ -251,95 +258,112 @@ public class orders : MonoBehaviour
             order BREAD_HAM = new order("Bread and Ham", false, false, false, true, true, false);
             BREAD_HAM.DisplayName();
             price = 5;
+            currentOrderPhoto.sprite = orderPhotos[4];
         }
         else if (randomNum == 6)
         {
             order BREAD_HAM_LEMONADE = new order("Bread and Ham Lemonade", false, true, false, true, true, false);
             BREAD_HAM_LEMONADE.DisplayName();
+            price = 5;
+            currentOrderPhoto.sprite = orderPhotos[5];
         }
         else if (randomNum == 7)
         {
             order BREAD_OLIVE = new order("Bread and Olive", false, false, false, true, false, true);
             BREAD_OLIVE.DisplayName();
             price = 5;
+            currentOrderPhoto.sprite = orderPhotos[6];
         }
         else if (randomNum == 8)
         {
             order BREAD_HAM_OLIVE = new order("Bread and Ham and Olive", false, false, false, true, true, true);
             BREAD_HAM_OLIVE.DisplayName();
             price = 5;
+            currentOrderPhoto.sprite = orderPhotos[7];
         }
         else if (randomNum == 9)
         {
             order BREAD_HAM_OLIVE_LEMONADE = new order("Bread and Ham and Olive Lemonade", false, true, false, true, true, true);
             BREAD_HAM_OLIVE_LEMONADE.DisplayName();
             price = 5;
+            currentOrderPhoto.sprite = orderPhotos[8];
         }
         else if (randomNum == 10)
         {
             order EGG = new order("Egg", true, false, false, false, false, false);
             EGG.DisplayName();
             price = 5;
+            currentOrderPhoto.sprite = orderPhotos[9];
         }
         else if (randomNum == 11)
         {
             order EGG_LEMONADE = new order("Egg Lemonade", true, true, false, false, false, false);
             EGG_LEMONADE.DisplayName();
             price = 5;
+            currentOrderPhoto.sprite = orderPhotos[10];
         }
         else if (randomNum == 12)
         {
             order EGG_OLIVE = new order("Egg and Olive", true, false, false, false, false, true);
             EGG_OLIVE.DisplayName();
             price = 5;
+            currentOrderPhoto.sprite = orderPhotos[11];
         }
         else if (randomNum == 13)
         {
             order EGG_OLIVE_LEMONADE = new order("Egg and Olive Lemonade", true, true, false, false, false, true);
             EGG_OLIVE_LEMONADE.DisplayName();
             price = 5;
+            currentOrderPhoto.sprite = orderPhotos[12];
         }
         else if (randomNum == 14)
         {
             order EGG_SANDWICH = new order("Egg Sandwich", true, false, false, true, false, false);
             EGG_SANDWICH.DisplayName();
             price = 5;
+            currentOrderPhoto.sprite = orderPhotos[13];
         }
         else if (randomNum == 15)
         {
             order EGG_HAM_SANDWICH = new order("Egg and Ham Sandwich", true, false, false, true, true, false);
             EGG_HAM_SANDWICH.DisplayName();
             price = 5;
+            currentOrderPhoto.sprite = orderPhotos[14];
         }
         else if (randomNum == 16)
         {
             order EGG_HAM_SANDWICH_LEMONADE = new order("Egg and Ham Sandwich Lemonade", true, true, false, true, true, false);
             EGG_HAM_SANDWICH_LEMONADE.DisplayName();
             price = 5;
+            currentOrderPhoto.sprite = orderPhotos[15];
         }
         else if (randomNum == 17)
         {
             order EGG_OLIVE_SANDWICH = new order("Egg and Olive Sandwich", true, false, false, true, false, true);
             EGG_OLIVE_SANDWICH.DisplayName();
             price = 5;
+            currentOrderPhoto.sprite = orderPhotos[16];
         }
         else if (randomNum == 18)
         {
             order EGG_OLIVE_SANDWICH_LEMONADE = new order("Egg and Olive Sandwich Lemonade", true, true, false, true, false, true);
             EGG_OLIVE_SANDWICH_LEMONADE.DisplayName();
             price = 5;
+            currentOrderPhoto.sprite = orderPhotos[17];
         }
         else if (randomNum == 19)
         {
             order EGG_HAM_OLIVE_SANDWICH = new order("Egg and Ham and Olive Sandwich", true, false, false, true, true, true);
             EGG_HAM_OLIVE_SANDWICH.DisplayName();
             price = 5;
+            currentOrderPhoto.sprite = orderPhotos[18];
         }
         else if (randomNum == 20)
         {
             order EGG_HAM_OLIVE_SANDWICH_LEMONADE = new order("Egg and Ham and Olive Sandwich Lemonade", true, true, false, true, true, true);
             EGG_HAM_OLIVE_SANDWICH_LEMONADE.DisplayName();
             price = 5;
+            currentOrderPhoto.sprite = orderPhotos[19];
         }
     }
 }
