@@ -9,15 +9,21 @@ public class start : MonoBehaviour
     public GameObject one;
     public GameObject two;
     public GameObject three;
+    public GameObject Tp;
+    public GameObject oneT; 
+    public GameObject Fop;
 
     // Start is called before the first frame update
     void Start()
     {
-        GameObject.Find("Sp").SetActive(false);
-        GameObject.Find("one").SetActive(false);
-        GameObject.Find("two").SetActive(false);
-        GameObject.Find("three").SetActive(false);
-        GameObject.Find("Fp").SetActive(true);
+        Sp.SetActive(false);
+        one.SetActive(false);
+        two.SetActive(false);
+        three.SetActive(false);
+        Fp.SetActive(true);
+        Tp.SetActive(false);
+        oneT.SetActive(false);
+        Fop.SetActive(false);
     }
 
     // Update is called once per frame
