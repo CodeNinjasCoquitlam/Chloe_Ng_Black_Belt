@@ -65,10 +65,10 @@ public class Interact : MonoBehaviour
                 pickUp.Play();
                 PickUpItem(cookiePrefab, "cookie");
             }
-            if (triggerName == "olives")
+            if (triggerName == "Olives")
             {
                 pickUp.Play();
-                PickUpItem(olivePrefab, "olive");
+                PickUpItem(olivePrefab, "olives");
             }
             if (triggerName == "Trash")
             {

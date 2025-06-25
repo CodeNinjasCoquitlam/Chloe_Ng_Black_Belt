@@ -12,6 +12,8 @@ public class start : MonoBehaviour
     public GameObject Tp;
     public GameObject oneT; 
     public GameObject Fop;
+    public GameObject Fivp;
+    public GameObject onef;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +26,8 @@ public class start : MonoBehaviour
         Tp.SetActive(false);
         oneT.SetActive(false);
         Fop.SetActive(false);
+        Fivp.SetActive(false);
+        onef.SetActive(false);
     }
 
     // Update is called once per frame
