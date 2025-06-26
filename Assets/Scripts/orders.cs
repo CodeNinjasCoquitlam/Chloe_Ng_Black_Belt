@@ -5,7 +5,277 @@ using UnityEngine.UI;
 
 public class orders : MonoBehaviour
 {
-    #region moreComments
+    #region Variables
+    public Vector3 startPos;
+    public GameObject frenchtoast;
+    public Text orderName;
+    public bool moving = false;
+    public bool ordering = false;
+    public bool cloned = false;
+    public int randomNum;
+    public bool hasFood = false;
+    public int price;
+    public Image currentOrderPhoto;
+    public Sprite[] orderPhotos;
+    public AudioSource PuduCameBack;
+    private order currentOrder;
+    
+    #endregion
+
+    public class order
+    {
+        string name;
+        bool egg;
+        bool lemonade;
+        bool cookie;
+        bool bread;
+        bool cream;
+        bool olive;
+
+        orders parent;
+
+        public order(string na, bool eg, bool le, bool co, bool br, bool cr, bool ol, orders parentRef)
+        {
+            this.name = na;
+            this.egg = eg;
+            this.lemonade = le;
+            this.cookie = co;
+            this.bread = br;
+            this.cream = cr;
+            this.olive = ol;
+            this.parent = parentRef;
+        }
+
+        public void DisplayName()
+        {
+            //shows the order on screen (text)
+            Debug.Log(this.name);
+            parent.orderName.text = this.name;
+        }
+    }
+
+    void Start()
+    {
+        startPos = transform.position;
+        frenchtoast = GameObject.Find("Receivers/Pudu/French Toast");
+        genOrders();
+    }
+
+    void Update()
+    {
+        if (ordering == true)
+        {
+            //turns it right
+            transform.Rotate(Vector3.up * 60 * Time.deltaTime);
+        }
+        if (moving == true)
+        {
+            if (transform.position.z <= startPos.z)
+            {
+                //moves forward
+                transform.position += new Vector3(0, 0, 1);
+                PuduCameBack.Play();
+            }
+            else
+            {
+                moving = false;
+                genOrders();
+            }
+        }
+
+        if (transform.rotation.eulerAngles.y >= 90)
+        {
+            //if it stops turning right
+            ordering = false;
+            transform.position += new Vector3(0.5f, 0, 0);
+            if (cloned == false)
+            {
+                Invoke("cloning", 2f);
+                cloned = true;
+            }
+        }
+
+        if (Input.GetKeyDown("c"))
+        {
+            Debug.Log("C was pressed");
+            if (hasFood)
+            {
+                //not holding food
+                Debug.Log("hasFood is TRUE");
+                ordering = true;
+                hasFood = false;
+            }
+            else
+            {
+                //holding food
+                Debug.Log("hasFood is FALSE");
+            }
+        }
+    }
+
+    void cloning()
+    {
+        foreach (Transform child in frenchtoast.transform)
+        {
+            //makes everything in french toast GONE
+            child.gameObject.SetActive(false);
+        }
+        //starts everythin
+        gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+        transform.position = startPos - new Vector3(0, 0, 10f);
+        moving = true;
+        cloned = false;
+    }
+
+    void genOrders()
+    {
+        randomNum = Random.Range(1, 21);
+
+        if (randomNum == 1)
+        {
+            order COOKIE = new order("Cookie", false, false, true, false, false, false, this);
+            COOKIE.DisplayName();
+            price = 2;
+            currentOrderPhoto.sprite = orderPhotos[0];
+        }
+        else if (randomNum == 2)
+        {
+            order COOKIE_LEMONADE = new order("Cookie Lemonade", false, true, true, false, false, false, this);
+            COOKIE_LEMONADE.DisplayName();
+            price = 3;
+            currentOrderPhoto.sprite = orderPhotos[1];
+        }
+        else if (randomNum == 3)
+        {
+            order BREAD = new order("Bread", false, false, false, true, false, false, this);
+            BREAD.DisplayName();
+            price = 1;
+            currentOrderPhoto.sprite = orderPhotos[2];
+        }
+        else if (randomNum == 4)
+        {
+            order BREAD_LEMONADE = new order("Bread Lemonade", false, false, true, true, false, false, this);
+            BREAD_LEMONADE.DisplayName();
+            price = 2;
+            currentOrderPhoto.sprite = orderPhotos[3];
+        }
+        else if (randomNum == 5)
+        {
+            order BREAD_HAM = new order("Bread and Ham", false, false, false, true, true, false, this);
+            BREAD_HAM.DisplayName();
+            price = 2;
+            currentOrderPhoto.sprite = orderPhotos[4];
+        }
+        else if (randomNum == 6)
+        {
+            order BREAD_HAM_LEMONADE = new order("Bread and Ham Lemonade", false, true, false, true, true, false, this);
+            BREAD_HAM_LEMONADE.DisplayName();
+            price = 3;
+            currentOrderPhoto.sprite = orderPhotos[5];
+        }
+        else if (randomNum == 7)
+        {
+            order BREAD_OLIVE = new order("Bread and Olive", false, false, false, true, false, true, this);
+            BREAD_OLIVE.DisplayName();
+            price = 2;
+            currentOrderPhoto.sprite = orderPhotos[6];
+        }
+        else if (randomNum == 8)
+        {
+            order BREAD_HAM_OLIVE = new order("Bread and Ham and Olive", false, false, false, true, true, true, this);
+            BREAD_HAM_OLIVE.DisplayName();
+            price = 3;
+            currentOrderPhoto.sprite = orderPhotos[7];
+        }
+        else if (randomNum == 9)
+        {
+            order BREAD_HAM_OLIVE_LEMONADE = new order("Bread and Ham and Olive Lemonade", false, true, false, true, true, true, this);
+            BREAD_HAM_OLIVE_LEMONADE.DisplayName();
+            price = 4;
+            currentOrderPhoto.sprite = orderPhotos[8];
+        }
+        else if (randomNum == 10)
+        {
+            order EGG = new order("Egg", true, false, false, false, false, false, this);
+            EGG.DisplayName();
+            price = 1;
+            currentOrderPhoto.sprite = orderPhotos[9];
+        }
+        else if (randomNum == 11)
+        {
+            order EGG_LEMONADE = new order("Egg Lemonade", true, true, false, false, false, false, this);
+            EGG_LEMONADE.DisplayName();
+            price = 2;
+            currentOrderPhoto.sprite = orderPhotos[10];
+        }
+        else if (randomNum == 12)
+        {
+            order EGG_OLIVE = new order("Egg and Olive", true, false, false, false, false, true, this);
+            EGG_OLIVE.DisplayName();
+            price = 2;
+            currentOrderPhoto.sprite = orderPhotos[11];
+        }
+        else if (randomNum == 13)
+        {
+            order EGG_OLIVE_LEMONADE = new order("Egg and Olive Lemonade", true, true, false, false, false, true, this);
+            EGG_OLIVE_LEMONADE.DisplayName();
+            price = 3;
+            currentOrderPhoto.sprite = orderPhotos[12];
+        }
+        else if (randomNum == 14)
+        {
+            order EGG_SANDWICH = new order("Egg Sandwich", true, false, false, true, false, false, this);
+            EGG_SANDWICH.DisplayName();
+            price = 4;
+            currentOrderPhoto.sprite = orderPhotos[13];
+        }
+        else if (randomNum == 15)
+        {
+            order EGG_HAM_SANDWICH = new order("Egg and Ham Sandwich", true, false, false, true, true, false, this);
+            EGG_HAM_SANDWICH.DisplayName();
+            price = 3;
+            currentOrderPhoto.sprite = orderPhotos[14];
+        }
+        else if (randomNum == 16)
+        {
+            order EGG_HAM_SANDWICH_LEMONADE = new order("Egg and Ham Sandwich Lemonade", true, true, false, true, true, false, this);
+            EGG_HAM_SANDWICH_LEMONADE.DisplayName();
+            price = 4;
+            currentOrderPhoto.sprite = orderPhotos[15];
+        }
+        else if (randomNum == 17)
+        {
+            order EGG_OLIVE_SANDWICH = new order("Egg and Olive Sandwich", true, false, false, true, false, true, this);
+            EGG_OLIVE_SANDWICH.DisplayName();
+            price = 3;
+            currentOrderPhoto.sprite = orderPhotos[16];
+        }
+        else if (randomNum == 18)
+        {
+            order EGG_OLIVE_SANDWICH_LEMONADE = new order("Egg and Olive Sandwich Lemonade", true, true, false, true, false, true, this);
+            EGG_OLIVE_SANDWICH_LEMONADE.DisplayName();
+            price = 4;
+            currentOrderPhoto.sprite = orderPhotos[17];
+        }
+        else if (randomNum == 19)
+        {
+            order EGG_HAM_OLIVE_SANDWICH = new order("Egg and Ham and Olive Sandwich", true, false, false, true, true, true, this);
+            EGG_HAM_OLIVE_SANDWICH.DisplayName();
+            price = 5;
+            currentOrderPhoto.sprite = orderPhotos[18];
+        }
+        else if (randomNum == 20)
+        {
+            order EGG_HAM_OLIVE_SANDWICH_LEMONADE = new order("Egg and Ham and Olive Sandwich Lemonade", true, true, false, true, true, true, this);
+            EGG_HAM_OLIVE_SANDWICH_LEMONADE.DisplayName();
+            price = 6;
+            currentOrderPhoto.sprite = orderPhotos[19];
+        }
+    }
+}
+
+
+/*
     //the orders:
     //COOKIE
     //COOKIE_LEMONADE
@@ -42,13 +312,14 @@ public class orders : MonoBehaviour
     public int price;
     public Image currentOrderPhoto;
     public Sprite[] orderPhotos;
+    private string message = this.name;
 
 
     public AudioSource PuduCameBack;
 
     private order currentOrder;
     #endregion
-
+    
 
     #region orderVars
     /*
@@ -73,170 +344,42 @@ public class orders : MonoBehaviour
     order EGG_HAM_OLIVE_SANDWICH = new order("Egg and Ham and Olive Sandwich", true, false, false, true, true, true);
     order EGG_HAM_OLIVE_SANDWICH_LEMONADE = new order("Egg and Ham and Olive Sandwich Lemonade", true, true, false, true, true, true);
     */
-    #endregion
+//#endregion
 
-    #region Comments
-    //Making the orders 
+#region Comments
+//Making the orders 
 
-    // CHANGED BY SENSEI RYAN (WORKS)
-    //    public List<string> orderssss = new List<string> {
-    //      "COOKIE",
-    //      "COOKIE_LEMONADE",
-    //      "BREAD",
-    //      "BREAD_LEMONADE",
-    //      "BREAD_OLIVE",
-    //      "BREAD_AND_HAM",
-    //      "BREAD_AND_HAM_LEMONADE",
-    //      "BREAD_AND_HAM_AND_OLIVE",
-    //      "BREAD_AND_HAM_AND_OLIVE_LEMONADE",
-    //      "EGG",
-    //      "EGG_LEMONADE",
-    //      "EGG_AND_OLIVE",
-    //      "EGG_AND_OLIVE_LEMONADE",
-    //      "EGG_SANDWICH",
-    //      "EGG_AND_HAM_SANDWICH",
-    //      "EGG_AND_HAM_SANDWICH_LEMONADE",
-    //      "EGG_AND_OLIVE_SANDWICH",
-    //      "EGG_AND_OLIVE_SANDWICH_LEMONADE",
-    //      "EGG_AND_HAM_AND_OLIVE_SANDWICH",
-    //      "EGG_AND_HAM_AND_OLIVE_SANDWICH_LEMONADE"
-    //};
-
-
-    //actually code: order[14] list = {EGGNHAMSANDWICH, }
-
-    #endregion
-
-    //setting the ingredients up
-    public class order
-    {
-        string name;
-        bool egg;
-        bool lemonade;
-        bool cookie;
-        bool bread;
-        bool cream;
-        bool olive;
+// CHANGED BY SENSEI RYAN (WORKS)
+//    public List<string> orderssss = new List<string> {
+//      "COOKIE",
+//      "COOKIE_LEMONADE",
+//      "BREAD",
+//      "BREAD_LEMONADE",
+//      "BREAD_OLIVE",
+//      "BREAD_AND_HAM",
+//      "BREAD_AND_HAM_LEMONADE",
+//      "BREAD_AND_HAM_AND_OLIVE",
+//      "BREAD_AND_HAM_AND_OLIVE_LEMONADE",
+//      "EGG",
+//      "EGG_LEMONADE",
+//      "EGG_AND_OLIVE",
+//      "EGG_AND_OLIVE_LEMONADE",
+//      "EGG_SANDWICH",
+//      "EGG_AND_HAM_SANDWICH",
+//      "EGG_AND_HAM_SANDWICH_LEMONADE",
+//      "EGG_AND_OLIVE_SANDWICH",
+//      "EGG_AND_OLIVE_SANDWICH_LEMONADE",
+//      "EGG_AND_HAM_AND_OLIVE_SANDWICH",
+//      "EGG_AND_HAM_AND_OLIVE_SANDWICH_LEMONADE"
+//};
 
 
-        public order()
-        {
-            //cant put anything in here (idk why)
-        }
-        // order actually matters here for true and false
-        public order(string na, bool eg, bool le, bool co, bool br, bool cr, bool ol)
-        {
-            this.name = na;
-            this.egg = eg;
-            this.lemonade = le;
-            this.cookie = co;
-            this.bread = br;
-            this.cream = cr;
-            this.olive = ol;
-        }
+//actually code: order[14] list = {EGGNHAMSANDWICH, }
 
-        public void DisplayName()
-        {
-            Debug.Log(this.name); // this works
+#endregion
 
-            //currentOrderName = this.name;
-            orderName.text = this.name;
-
-        }
-    }
-
-    void Start()
-    {
-        startPos = transform.position;
-        frenchtoast = GameObject.Find("Receivers/Pudu/French Toast");
-        genOrders();
-
-        //string randomOrder = GetRandomOrder();
-        //Debug.Log("Order:" + randomOrder);
-
-        //string GetRandomOrder()
-        //{
-        //    int index = Random.Range(0, orderssss.Count);
-        //    return orderssss[index];
-        //}
-
-    }
-
-
-    void Update()
-    {
-        if (ordering == true)
-        {
-
-            //turns it right
-            transform.Rotate(Vector3.up * 60 * Time.deltaTime);
-        }
-        if (moving == true)
-        {
-
-            if (transform.position.z <= startPos.z)
-            {
-                //makes it move forward to the table
-                transform.position += new Vector3(0, 0, 1);
-                PuduCameBack.Play();
-            }
-            else
-            {
-
-                moving = false;
-                genOrders();
-                //gameObject.FindChildByName("chocoCookie").setActive;
-            }
-        }
-
-
-        if (transform.rotation.eulerAngles.y >= 90)
-        {
-            //if it stopped turning right
-            ordering = false;
-            transform.position += new Vector3(0.5f, 0, 0);
-            if (cloned == false)
-            {
-                //justs teleports it back
-                Invoke("cloning", 2f);
-                cloned = true;
-            }
-        }
-
-        if (Input.GetKeyDown("c"))
-        {
-
-            Debug.Log("C was pressed");
-
-            if (hasFood)
-            {
-                Debug.Log("hasFood is TRUE");
-                ordering = true;
-                hasFood = false;
-            }
-            else
-            {
-                Debug.Log("hasFood is FALSE");
-            }
-        }
-
-
-    }
-
-    void cloning()
-    {
-        //transform.rotation = new Vector3(0, 0, 0);
-        foreach (Transform child in frenchtoast.transform)
-        {
-            child.gameObject.SetActive(false);
-        }
-        gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
-        transform.position = startPos - new Vector3(0, 0, 10f);
-        moving = true;
-        cloned = false;
-
-    }
-    /*
+        /*
+    
         void genOrders()
         {
             randomNum = Random.Range(1, 20);
@@ -384,140 +527,10 @@ public class orders : MonoBehaviour
             }
         }
     }
-    */
-
+    
+*/
     //new GenOrders
-    void genOrders()
-    {
-        randomNum = Random.Range(1, 21); // Inclusive lower bound, exclusive upper bound — 21 to include 20
-
-        switch (randomNum)
-        {
-            case 1:
-                currentOrder = new order("Cookie", false, false, true, false, false, false);
-                price = 2;
-                currentOrderPhoto.sprite = orderPhotos[0];
-                break;
-
-            case 2:
-                currentOrder = new order("Cookie Lemonade", false, true, true, false, false, false);
-                price = 3;
-                currentOrderPhoto.sprite = orderPhotos[1];
-                break;
-
-            case 3:
-                currentOrder = new order("Bread", false, false, false, true, false, false);
-                price = 1;
-                currentOrderPhoto.sprite = orderPhotos[2];
-                break;
-
-            case 4:
-                currentOrder = new order("Bread Lemonade", false, false, true, true, false, false);
-                price = 2;
-                currentOrderPhoto.sprite = orderPhotos[3];
-                break;
-
-            case 5:
-                currentOrder = new order("Bread and Ham", false, false, false, true, true, false);
-                price = 2;
-                currentOrderPhoto.sprite = orderPhotos[4];
-                break;
-
-            case 6:
-                currentOrder = new order("Bread and Ham Lemonade", false, true, false, true, true, false);
-                price = 3;
-                currentOrderPhoto.sprite = orderPhotos[5];
-                break;
-
-            case 7:
-                currentOrder = new order("Bread and Olive", false, false, false, true, false, true);
-                price = 2;
-                currentOrderPhoto.sprite = orderPhotos[6];
-                break;
-
-            case 8:
-                currentOrder = new order("Bread and Ham and Olive", false, false, false, true, true, true);
-                price = 3;
-                currentOrderPhoto.sprite = orderPhotos[7];
-                break;
-
-            case 9:
-                currentOrder = new order("Bread and Ham and Olive Lemonade", false, true, false, true, true, true);
-                price = 4;
-                currentOrderPhoto.sprite = orderPhotos[8];
-                break;
-
-            case 10:
-                currentOrder = new order("Egg", true, false, false, false, false, false);
-                price = 1;
-                currentOrderPhoto.sprite = orderPhotos[9];
-                break;
-
-            case 11:
-                currentOrder = new order("Egg Lemonade", true, true, false, false, false, false);
-                price = 2;
-                currentOrderPhoto.sprite = orderPhotos[10];
-                break;
-
-            case 12:
-                currentOrder = new order("Egg and Olive", true, false, false, false, false, true);
-                price = 2;
-                currentOrderPhoto.sprite = orderPhotos[11];
-                break;
-
-            case 13:
-                currentOrder = new order("Egg and Olive Lemonade", true, true, false, false, false, true);
-                price = 3;
-                currentOrderPhoto.sprite = orderPhotos[12];
-                break;
-
-            case 14:
-                currentOrder = new order("Egg Sandwich", true, false, false, true, false, false);
-                price = 4;
-                currentOrderPhoto.sprite = orderPhotos[13];
-                break;
-
-            case 15:
-                currentOrder = new order("Egg and Ham Sandwich", true, false, false, true, true, false);
-                price = 3;
-                currentOrderPhoto.sprite = orderPhotos[14];
-                break;
-
-            case 16:
-                currentOrder = new order("Egg and Ham Sandwich Lemonade", true, true, false, true, true, false);
-                price = 4;
-                currentOrderPhoto.sprite = orderPhotos[15];
-                break;
-
-            case 17:
-                currentOrder = new order("Egg and Olive Sandwich", true, false, false, true, false, true);
-                price = 3;
-                currentOrderPhoto.sprite = orderPhotos[16];
-                break;
-
-            case 18:
-                currentOrder = new order("Egg and Olive Sandwich Lemonade", true, true, false, true, false, true);
-                price = 4;
-                currentOrderPhoto.sprite = orderPhotos[17];
-                break;
-
-            case 19:
-                currentOrder = new order("Egg and Ham and Olive Sandwich", true, false, false, true, true, true);
-                price = 5;
-                currentOrderPhoto.sprite = orderPhotos[18];
-                break;
-
-            case 20:
-                currentOrder = new order("Egg and Ham and Olive Sandwich Lemonade", true, true, false, true, true, true);
-                price = 6;
-                currentOrderPhoto.sprite = orderPhotos[19];
-                break;
-        }
-
-        // Set the order name in UI
-        orderName.text = currentOrder.GetName();
-    }
-}
+    
 
 //order COOKIE = new order("Cookie", false, false, true, false, false, false);
 //order COOKIE_LEMONADE = new order("Cookie Lemonade", false, true, true, false, false, false);
