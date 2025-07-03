@@ -31,51 +31,56 @@ public class Interact : MonoBehaviour
     public GameObject heldItem;
     public string heldItemName;
     private List<string> ingredientsGathered;
-
+    private bool isHoldingItem = false;
     void Start()
     {
         ingredientsGathered = new List<string>();
     }
     void Update()
     {
-        
+
         if (Input.GetKeyDown("space"))
         {
-            if (triggerName == "Bread")
+            if (!isHoldingItem)
             {
-                pickUp.Play();
-                PickUpItem(breadPrefab, "breadSlice");
+                if (triggerName == "Bread")
+                {
+                    pickUp.Play();
+                    PickUpItem(breadPrefab, "breadSlice");
+                }
+                if (triggerName == "Egg")
+                {
+                    gooseSound.Play();
+                    PickUpItem(eggPrefab, "egg");
+                }
+                if (triggerName == "Lemonade")
+                {
+                    pickUp.Play();
+                    PickUpItem(lemonPrefab, "lemonade");
+                }
+                if (triggerName == "Cream")
+                {
+                    pickUp.Play();
+                    PickUpItem(creamPrefab, "cream");
+                }
+                if (triggerName == "Cookie")
+                {
+                    pickUp.Play();
+                    PickUpItem(cookiePrefab, "cookie");
+                }
+                if (triggerName == "Olives")
+                {
+                    pickUp.Play();
+                    PickUpItem(olivePrefab, "olives");
+                }
             }
-            if (triggerName == "Egg")
-            {
-                gooseSound.Play();
-                PickUpItem(eggPrefab, "egg");
-            }
-            if (triggerName == "Lemonade")
-            {
-                pickUp.Play();
-                PickUpItem(lemonPrefab, "lemonade");
-            }
-            if (triggerName == "Cream")
-            {
-                pickUp.Play();
-                PickUpItem(creamPrefab, "cream");
-            }
-            if (triggerName == "Cookie")
-            {
-                pickUp.Play();
-                PickUpItem(cookiePrefab, "cookie");
-            }
-            if (triggerName == "Olives")
-            {
-                pickUp.Play();
-                PickUpItem(olivePrefab, "olives");
-            }
+
             if (triggerName == "Trash")
             {
                 trashAway.Play();
                 PlaceHeldItem();
             }
+
             if (triggerName == "Stove")
             {
                 if (heldItemName == "breadSlice")
@@ -90,26 +95,24 @@ public class Interact : MonoBehaviour
                     stove.FryEgg();
                     PlaceHeldItem();
                 }
-                else
+                if (stove.cookedFood == "toast" && !isHoldingItem)
                 {
-                    if (stove.cookedFood == "toast")
-                    {
-                        if (stove.smokes == "0")
-                        {
-                            pickUp.Play();
-                            PickUpItem(FrenchToastPrefab, "Toast");
-                            stove.CleanStove();
-                        }
-                    }
-                    if (stove.cookedFood == "friedEgg")
-                    {
-                        if (stove.smokes == "0")
-                        {
-                            pickUp.Play();
-                            PickUpItem(friedEggPrefab, "friedEgg");
-                            stove.CleanStove();
-                        }
-                    }
+                     if (stove.smokes == "0")
+                     {
+                        pickUp.Play();
+                        PickUpItem(FrenchToastPrefab, "Toast");
+                        stove.CleanStove();
+                     }
+                }
+            }
+            
+            if (stove.cookedFood == "friedEgg" && !isHoldingItem)
+            {
+                if (stove.smokes == "0")
+                {
+                    pickUp.Play();
+                    PickUpItem(friedEggPrefab, "friedEgg");
+                    stove.CleanStove();
                 }
             }
             if (triggerName == "Receivers")
@@ -122,8 +125,8 @@ public class Interact : MonoBehaviour
 
                     //for (int i = 0; i < ingredientsGathered.Count; i++){
 
-                      //  Debug.Log(ingredientsGathered[i]);
-                    
+                    //  Debug.Log(ingredientsGathered[i]);
+
                     //}
 
 
@@ -142,156 +145,156 @@ public class Interact : MonoBehaviour
 
                             ingredientsGathered.Clear();
                         }
-                        
+
                     }
                     else if (OrderManager.randomNum == 4)
+                    {
+                        if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("lemonade"))
                         {
-                            if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("lemonade"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("Bread lemonade");
-                                Debug.Log(total);
-                                ingredientsGathered.Clear();
-                                moneyEarned.text = "$" + total.ToString();
+                            total += OrderManager.price;
+                            Debug.Log("Bread lemonade");
+                            Debug.Log(total);
+                            ingredientsGathered.Clear();
+                            moneyEarned.text = "$" + total.ToString();
 
-                            }
                         }
+                    }
                     else if (OrderManager.randomNum == 5)
+                    {
+                        if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("cream"))
                         {
-                            if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("cream"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("Bread + ham");
-                                Debug.Log(total);
-                                ingredientsGathered.Clear();
-                                moneyEarned.text = "$" + total.ToString();
-                            }
+                            total += OrderManager.price;
+                            Debug.Log("Bread + ham");
+                            Debug.Log(total);
+                            ingredientsGathered.Clear();
+                            moneyEarned.text = "$" + total.ToString();
                         }
+                    }
                     else if (OrderManager.randomNum == 6)
+                    {
+                        if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("lemonade"))
                         {
-                            if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("lemonade"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("Bread + ham lemonade");
-                                Debug.Log(total);
-                                moneyEarned.text = "$" + total.ToString();
-                                ingredientsGathered.Clear();
-                            }
+                            total += OrderManager.price;
+                            Debug.Log("Bread + ham lemonade");
+                            Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
+                            ingredientsGathered.Clear();
                         }
+                    }
                     else if (OrderManager.randomNum == 7)
+                    {
+                        if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("olives"))
                         {
-                            if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("olives"))
-                            {
-                                total += OrderManager.price;
-                                moneyEarned.text = "$" + total.ToString();
-                                Debug.Log("Bread olive");
-                                Debug.Log(total);
-                                ingredientsGathered.Clear();
-                                moneyEarned.text = "$" + total.ToString();
-                            }
+                            total += OrderManager.price;
+                            moneyEarned.text = "$" + total.ToString();
+                            Debug.Log("Bread olive");
+                            Debug.Log(total);
+                            ingredientsGathered.Clear();
+                            moneyEarned.text = "$" + total.ToString();
                         }
+                    }
                     else if (OrderManager.randomNum == 8)
+                    {
+                        if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("Toast"))
                         {
-                            if(ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("Toast"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("olive + ham sandwich");
-                                Debug.Log(total);
-                                moneyEarned.text = "$" + total.ToString();
-                                ingredientsGathered.Clear();
-                            }
+                            total += OrderManager.price;
+                            Debug.Log("olive + ham sandwich");
+                            Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
+                            ingredientsGathered.Clear();
                         }
+                    }
                     else if (OrderManager.randomNum == 9)
+                    {
+                        if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("lemonade"))
                         {
-                            if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("lemonade"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("olive + ham sandwich lemonade");
-                                Debug.Log(total);
-                                moneyEarned.text = "$" + total.ToString();
-                                ingredientsGathered.Clear();
-                            }
+                            total += OrderManager.price;
+                            Debug.Log("olive + ham sandwich lemonade");
+                            Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
+                            ingredientsGathered.Clear();
                         }
+                    }
                     else if (OrderManager.randomNum == 14)
+                    {
+                        if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("friedEgg"))
                         {
-                            if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("friedEgg"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("egg sandwich");
-                                Debug.Log(total);
-                                moneyEarned.text = "$" + total.ToString();
-                                ingredientsGathered.Clear();
-                            }
+                            total += OrderManager.price;
+                            Debug.Log("egg sandwich");
+                            Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
+                            ingredientsGathered.Clear();
                         }
+                    }
                     else if (OrderManager.randomNum == 15)
+                    {
+                        if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("cream"))
                         {
-                            if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("cream"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("egg ham sandwich");
-                                Debug.Log(total);
-                                ingredientsGathered.Clear();
-                                moneyEarned.text = "$" + total.ToString();
+                            total += OrderManager.price;
+                            Debug.Log("egg ham sandwich");
+                            Debug.Log(total);
+                            ingredientsGathered.Clear();
+                            moneyEarned.text = "$" + total.ToString();
                         }
-                        }
+                    }
                     else if (OrderManager.randomNum == 16)
+                    {
+                        if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("lemonade"))
                         {
-                            if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("lemonade"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("egg ham sandwich lemonade");
-                                Debug.Log(total);
-                                ingredientsGathered.Clear();
-                                moneyEarned.text = "$" + total.ToString();
+                            total += OrderManager.price;
+                            Debug.Log("egg ham sandwich lemonade");
+                            Debug.Log(total);
+                            ingredientsGathered.Clear();
+                            moneyEarned.text = "$" + total.ToString();
                         }
-                        }
+                    }
                     else if (OrderManager.randomNum == 17)
+                    {
+                        if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("Toast"))
                         {
-                            if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("Toast"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("olive + egg sandwich");
-                                Debug.Log(total);
-                                ingredientsGathered.Clear();
-                                moneyEarned.text = "$" + total.ToString();
-                            }
+                            total += OrderManager.price;
+                            Debug.Log("olive + egg sandwich");
+                            Debug.Log(total);
+                            ingredientsGathered.Clear();
+                            moneyEarned.text = "$" + total.ToString();
                         }
+                    }
                     else if (OrderManager.randomNum == 18)
+                    {
+                        if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("lemonade"))
                         {
-                            if (ingredientsGathered.Contains("olives")&& ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("lemonade"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("olive + egg sandwich lemonade");
-                                Debug.Log(total);
-                                ingredientsGathered.Clear();
-                                moneyEarned.text = "$" + total.ToString();
-                            }
+                            total += OrderManager.price;
+                            Debug.Log("olive + egg sandwich lemonade");
+                            Debug.Log(total);
+                            ingredientsGathered.Clear();
+                            moneyEarned.text = "$" + total.ToString();
                         }
+                    }
                     else if (OrderManager.randomNum == 19)
+                    {
+                        if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("FriedEgg") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("cream"))
                         {
-                            if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("FriedEgg") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("cream"))
-                        {
-                                total += OrderManager.price;
-                                Debug.Log("olive + egg + ham sandwich");
-                                Debug.Log(total);
-                                ingredientsGathered.Clear();
-                                moneyEarned.text = "$" + total.ToString();
+                            total += OrderManager.price;
+                            Debug.Log("olive + egg + ham sandwich");
+                            Debug.Log(total);
+                            ingredientsGathered.Clear();
+                            moneyEarned.text = "$" + total.ToString();
 
 
                         }
-                        }
+                    }
                     else if (OrderManager.randomNum == 20)
+                    {
+                        if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("lemonade"))
                         {
-                            if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("lemonade"))
-                        {
-                                total += OrderManager.price;
-                                Debug.Log("olive + egg + ham sandwich lemonade");
-                                Debug.Log(total);
-                                ingredientsGathered.Clear();
-                                moneyEarned.text = "$" + total.ToString();
+                            total += OrderManager.price;
+                            Debug.Log("olive + egg + ham sandwich lemonade");
+                            Debug.Log(total);
+                            ingredientsGathered.Clear();
+                            moneyEarned.text = "$" + total.ToString();
 
                         }
-                        }
+                    }
                 }
                 else if (heldItemName == "friedEgg")
                 {
@@ -312,126 +315,126 @@ public class Interact : MonoBehaviour
                             moneyEarned.text = "$" + total.ToString();
 
                         }
-                        
+
                     }
                     else if (OrderManager.randomNum == 11)
+                    {
+                        if (ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("lemonade"))
                         {
-                            if (ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("lemonade"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("egg lemonade");
-                                Debug.Log(total);
-                                ingredientsGathered.Clear();
-                                moneyEarned.text = "$" + total.ToString();
+                            total += OrderManager.price;
+                            Debug.Log("egg lemonade");
+                            Debug.Log(total);
+                            ingredientsGathered.Clear();
+                            moneyEarned.text = "$" + total.ToString();
 
                         }
-                        }
+                    }
                     else if (OrderManager.randomNum == 12)
+                    {
+                        if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("egg"))
                         {
-                            if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("egg"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("olive + egg");
-                                Debug.Log(total);
-                                ingredientsGathered.Clear();
-                                moneyEarned.text = "$" + total.ToString();
+                            total += OrderManager.price;
+                            Debug.Log("olive + egg");
+                            Debug.Log(total);
+                            ingredientsGathered.Clear();
+                            moneyEarned.text = "$" + total.ToString();
 
                         }
-                        }
+                    }
                     else if (OrderManager.randomNum == 13)
+                    {
+                        if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("lemonade"))
                         {
-                            if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("lemonade"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("olive + egg lemonade");
-                                Debug.Log(total);
-                                ingredientsGathered.Clear();
-                                moneyEarned.text = "$" + total.ToString();
+                            total += OrderManager.price;
+                            Debug.Log("olive + egg lemonade");
+                            Debug.Log(total);
+                            ingredientsGathered.Clear();
+                            moneyEarned.text = "$" + total.ToString();
 
                         }
-                        }
+                    }
                     else if (OrderManager.randomNum == 14)
+                    {
+                        if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("friedEgg"))
                         {
-                            if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("friedEgg"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("egg sandwich");
-                                Debug.Log(total);
-                                ingredientsGathered.Clear();
-                                moneyEarned.text = "$" + total.ToString();
-                            }
+                            total += OrderManager.price;
+                            Debug.Log("egg sandwich");
+                            Debug.Log(total);
+                            ingredientsGathered.Clear();
+                            moneyEarned.text = "$" + total.ToString();
                         }
+                    }
                     else if (OrderManager.randomNum == 15)
+                    {
+                        if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("cream"))
                         {
-                            if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("cream"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("egg ham sandwich");
-                                Debug.Log(total);
-                                ingredientsGathered.Clear();
-                                moneyEarned.text = "$" + total.ToString();
-                            }
+                            total += OrderManager.price;
+                            Debug.Log("egg ham sandwich");
+                            Debug.Log(total);
+                            ingredientsGathered.Clear();
+                            moneyEarned.text = "$" + total.ToString();
                         }
+                    }
                     else if (OrderManager.randomNum == 16)
+                    {
+                        if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("lemonade"))
                         {
-                            if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("lemonade"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("egg ham sandwich lemonade");
-                                Debug.Log(total);
-                                ingredientsGathered.Clear();
-                                moneyEarned.text = "$" + total.ToString();
+                            total += OrderManager.price;
+                            Debug.Log("egg ham sandwich lemonade");
+                            Debug.Log(total);
+                            ingredientsGathered.Clear();
+                            moneyEarned.text = "$" + total.ToString();
 
-                            }
                         }
+                    }
                     else if (OrderManager.randomNum == 17)
+                    {
+                        if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("Toast"))
                         {
-                            if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("Toast"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("olive + egg sandwich");
-                                Debug.Log(total);
-                                ingredientsGathered.Clear();
-                                moneyEarned.text = "$" + total.ToString();
-                            
-                            }
-                        }
-                    else if (OrderManager.randomNum == 18)
-                        {
-                            if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("lemonade"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("olive + egg sandwich lemonade");
-                                ingredientsGathered.Clear();
-                                Debug.Log(total);
-                                moneyEarned.text = "$" + total.ToString();
-                            
-                            }
-                        }
-                    else if (OrderManager.randomNum == 19)
-                        {
-                            if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("FriedEgg") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("cream"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("olive + egg + ham sandwich");
-                                ingredientsGathered.Clear();
-                                Debug.Log(total);
-                                moneyEarned.text = "$" + total.ToString();
+                            total += OrderManager.price;
+                            Debug.Log("olive + egg sandwich");
+                            Debug.Log(total);
+                            ingredientsGathered.Clear();
+                            moneyEarned.text = "$" + total.ToString();
 
-                            }
                         }
-                    else if (OrderManager.randomNum == 20)
+                    }
+                    else if (OrderManager.randomNum == 18)
+                    {
+                        if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("lemonade"))
                         {
-                            if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("lemonade"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("olive + egg + ham sandwich lemonade");
-                                ingredientsGathered.Clear();
-                                Debug.Log(total);
+                            total += OrderManager.price;
+                            Debug.Log("olive + egg sandwich lemonade");
+                            ingredientsGathered.Clear();
+                            Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
+
+                        }
+                    }
+                    else if (OrderManager.randomNum == 19)
+                    {
+                        if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("FriedEgg") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("cream"))
+                        {
+                            total += OrderManager.price;
+                            Debug.Log("olive + egg + ham sandwich");
+                            ingredientsGathered.Clear();
+                            Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
+
+                        }
+                    }
+                    else if (OrderManager.randomNum == 20)
+                    {
+                        if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("lemonade"))
+                        {
+                            total += OrderManager.price;
+                            Debug.Log("olive + egg + ham sandwich lemonade");
+                            ingredientsGathered.Clear();
+                            Debug.Log(total);
                             moneyEarned.text = "$" + total.ToString();
                             //
-                            }
                         }
+                    }
                 }
                 else if (heldItemName == "cream")
                 {
@@ -450,89 +453,89 @@ public class Interact : MonoBehaviour
                             Debug.Log(total);
                             moneyEarned.text = "$" + total.ToString();
                         }
-                        
+
 
                     }
                     else if (OrderManager.randomNum == 6)
+                    {
+                        if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("lemonade"))
                         {
-                            if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("lemonade"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("Bread + ham lemonade");
-                                ingredientsGathered.Clear();
-                                Debug.Log(total);
-                            }
+                            total += OrderManager.price;
+                            Debug.Log("Bread + ham lemonade");
+                            ingredientsGathered.Clear();
+                            Debug.Log(total);
                         }
+                    }
                     else if (OrderManager.randomNum == 8)
+                    {
+                        if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("Toast"))
                         {
-                            if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("Toast"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("olive + ham sandwich");
-                                ingredientsGathered.Clear();
-                                Debug.Log(total);
-                                moneyEarned.text = "$" + total.ToString();
+                            total += OrderManager.price;
+                            Debug.Log("olive + ham sandwich");
+                            ingredientsGathered.Clear();
+                            Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                             //
-                            }
-                        } 
+                        }
+                    }
                     else if (OrderManager.randomNum == 9)
+                    {
+                        if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("lemonade"))
                         {
-                            if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("lemonade"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("olive + ham sandwich lemonade");
-                                ingredientsGathered.Clear();
-                                Debug.Log(total);
-                                moneyEarned.text = "$" + total.ToString();
-                            
-                            }
+                            total += OrderManager.price;
+                            Debug.Log("olive + ham sandwich lemonade");
+                            ingredientsGathered.Clear();
+                            Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
+
                         }
+                    }
                     else if (OrderManager.randomNum == 15)
+                    {
+                        if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("cream"))
                         {
-                            if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("cream"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("egg ham sandwich");
+                            total += OrderManager.price;
+                            Debug.Log("egg ham sandwich");
 
-                                ingredientsGathered.Clear();
-                                Debug.Log(total);
-                                moneyEarned.text = "$" + total.ToString();
-                            }
+                            ingredientsGathered.Clear();
+                            Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
                         }
+                    }
                     else if (OrderManager.randomNum == 16)
+                    {
+                        if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("lemonade"))
                         {
-                            if (ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("lemonade"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("egg ham sandwich lemonade");
-                                ingredientsGathered.Clear();
-                                Debug.Log(total);
-                                moneyEarned.text = "$" + total.ToString();
+                            total += OrderManager.price;
+                            Debug.Log("egg ham sandwich lemonade");
+                            ingredientsGathered.Clear();
+                            Debug.Log(total);
+                            moneyEarned.text = "$" + total.ToString();
 
-                            }
                         }
+                    }
                     else if (OrderManager.randomNum == 19)
+                    {
+                        if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("FriedEgg") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("cream"))
                         {
-                            if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("FriedEgg") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("cream"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("olive + egg + ham sandwich");
-                                ingredientsGathered.Clear();
-                                Debug.Log(total);
+                            total += OrderManager.price;
+                            Debug.Log("olive + egg + ham sandwich");
+                            ingredientsGathered.Clear();
+                            Debug.Log(total);
                             moneyEarned.text = "$" + total.ToString();
-                            }
                         }
+                    }
                     else if (OrderManager.randomNum == 20)
+                    {
+                        if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("lemonade"))
                         {
-                            if (ingredientsGathered.Contains("olives") && ingredientsGathered.Contains("friedEgg") && ingredientsGathered.Contains("Toast") && ingredientsGathered.Contains("cream") && ingredientsGathered.Contains("lemonade"))
-                            {
-                                total += OrderManager.price;
-                                Debug.Log("olive + egg + ham sandwich lemonade");
-                                ingredientsGathered.Clear();
-                                Debug.Log(total);
+                            total += OrderManager.price;
+                            Debug.Log("olive + egg + ham sandwich lemonade");
+                            ingredientsGathered.Clear();
+                            Debug.Log(total);
                             moneyEarned.text = "$" + total.ToString();
-                            }
                         }
+                    }
                 }
                 else if (heldItemName == "lemonade")
                 {
@@ -650,7 +653,7 @@ public class Interact : MonoBehaviour
                     PlaceHeldItem();
                     GameObject.Find("Receivers/Pudu/French Toast/chocoCookie").SetActive(true);
                     OrderManager.hasFood = true;
-                    if (OrderManager.randomNum == 1 )
+                    if (OrderManager.randomNum == 1)
                     {
                         //just checking
                         Debug.Log("cookie added to order (correct)");
@@ -669,7 +672,7 @@ public class Interact : MonoBehaviour
                         //check if cookie and Lemonade both exist (are contained) in the 'ingedientsGathered' List
                         //if they both are, add the price of the order to total.
                     }
-                    else if(OrderManager.randomNum == 2){
+                    else if (OrderManager.randomNum == 2) {
                         if (ingredientsGathered.Contains("cookie") && ingredientsGathered.Contains("lemonade"))
                         {
                             total += OrderManager.price;
@@ -790,38 +793,39 @@ public class Interact : MonoBehaviour
                 }
             }
         }
-
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        triggerName = other.name;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        triggerName = "";
-    }
-
-    private void PlaceHeldItem()
-    {
-        Destroy(heldItem);
-        heldItemName = "";
-    }
-
-    private void PickUpItem(GameObject itemPrefab, string itemName)
-    {
-
-        heldItem = Instantiate(itemPrefab, transform, false);
-        heldItem.transform.localPosition = new Vector3(0, 0.2f, 0.5f);
-        if (heldItem.tag == "Egg")
+        private void OnTriggerEnter(Collider other)
         {
-            heldItem.transform.localScale = new Vector3(0.25f, 0.3f, 0.2f);
-        }
-        else
-        {
-            heldItem.transform.localScale = new Vector3(1, 1, 1);
+            triggerName = other.name;
         }
 
-        heldItemName = itemName;
-    }
+        private void OnTriggerExit(Collider other)
+        {
+            triggerName = "";
+        }
+
+        private void PlaceHeldItem()
+        {
+            Destroy(heldItem);
+            heldItemName = "";
+            isHoldingItem = false;
+        }
+
+        private void PickUpItem(GameObject itemPrefab, string itemName)
+        {
+
+            heldItem = Instantiate(itemPrefab, transform, false);
+            heldItem.transform.localPosition = new Vector3(0, 0.2f, 0.5f);
+            if (heldItem.tag == "Egg")
+            {
+                heldItem.transform.localScale = new Vector3(0.25f, 0.3f, 0.2f);
+            }
+            else
+            {
+                heldItem.transform.localScale = new Vector3(1, 1, 1);
+            }
+
+            heldItemName = itemName;
+            isHoldingItem = true;
+        }
 }
