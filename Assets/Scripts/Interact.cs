@@ -8,6 +8,15 @@ public class Interact : MonoBehaviour
 
     public Stove stove;
     public Text moneyEarned;
+    public GameObject breadText;
+    public GameObject eggText;
+    public GameObject lemonadeText;
+    public GameObject hamText;
+    public GameObject olivesText;
+    public GameObject cookieText;
+    public GameObject stoveText;
+    public GameObject trashText;
+    public GameObject subText;
 
     public AudioSource stoveSound;
     public AudioSource pickUp;
@@ -34,6 +43,14 @@ public class Interact : MonoBehaviour
     private bool isHoldingItem = false;
     void Start()
     {
+        breadText.GetComponent<Renderer>().enabled = false;
+        eggText.GetComponent<Renderer>().enabled = false;
+        lemonadeText.GetComponent<Renderer>().enabled = false;
+        hamText.GetComponent<Renderer>().enabled = false;
+        cookieText.GetComponent<Renderer>().enabled = false;
+        olivesText.GetComponent<Renderer>().enabled = false;
+        subText.GetComponent<Renderer>().enabled = false;
+
         ingredientsGathered = new List<string>();
     }
     void Update()
@@ -794,10 +811,74 @@ public class Interact : MonoBehaviour
             }
         }
     }
-        private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
+    {
+        triggerName = other.name;
+        if (triggerName == "Bread")
         {
-            triggerName = other.name;
+            breadText.GetComponent<Renderer>().enabled = true;
+        } else
+        {
+            breadText.GetComponent<Renderer>().enabled = false;
         }
+        if (triggerName == "Egg")
+        {
+            eggText.GetComponent<Renderer>().enabled = true;
+        } else
+        {
+            eggText.GetComponent<Renderer>().enabled = false;
+        }
+        if (triggerName == "Lemonade")
+        {
+            lemonadeText.GetComponent<Renderer>().enabled = true;
+        } else
+        {
+            lemonadeText.GetComponent<Renderer>().enabled = false;
+        }
+        if (triggerName == "Cream")
+        {
+            hamText.GetComponent<Renderer>().enabled = true;
+        } else
+        {
+            hamText.GetComponent<Renderer>().enabled = false;
+        }
+        if (triggerName == "Cookie")
+        {
+            cookieText.GetComponent<Renderer>().enabled = true;
+        } else
+        {
+            cookieText.GetComponent<Renderer>().enabled = false;
+        }
+        if (triggerName == "Olives")
+        {
+            olivesText.GetComponent<Renderer>().enabled = true;
+        } else
+        {
+            olivesText.GetComponent<Renderer>().enabled = false;
+        }
+        if (triggerName == "Stove")
+        {
+            stoveText.GetComponent<Renderer>().enabled = true;
+        } else
+        {
+            stoveText.GetComponent<Renderer>().enabled = false;
+        }
+        if(triggerName == "Trash")
+        {
+            trashText.GetComponent<Renderer>().enabled = true;
+        } else
+        {
+            trashText.GetComponent<Renderer>().enabled = false;
+        }
+        if (triggerName == "Receivers")
+        {
+            subText.GetComponent<Renderer>().enabled = true;
+        }
+        else
+        {
+            subText.GetComponent<Renderer>().enabled = false;
+        }
+    }
 
         private void OnTriggerExit(Collider other)
         {
